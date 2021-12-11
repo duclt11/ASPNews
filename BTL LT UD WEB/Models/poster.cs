@@ -1,4 +1,4 @@
-namespace BTL_LT_UD_WEB.Models
+﻿namespace BTL_LT_UD_WEB.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +18,10 @@ namespace BTL_LT_UD_WEB.Models
         [Key]
         public int poster_id { get; set; }
 
-        [Required]
+        [Index(IsUnique = true)]
+        [Required(ErrorMessage = "Email không được để trống!")]
+        [RegularExpression("^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$")] //regex test email
+        
         [StringLength(50)]
         public string email { get; set; }
 
@@ -26,25 +29,26 @@ namespace BTL_LT_UD_WEB.Models
         [StringLength(50)]
         public string username { get; set; }
 
-        [Required]
+        
         [StringLength(50)]
         public string fullname { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(128)]
         public string password { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string reset_password { get; set; }
+       
 
-        [Required]
+       
         [StringLength(100)]
         public string avatar { get; set; }
-
+        [RegularExpression("0[\\d]{9,9}")]
         public int? phone { get; set; }
 
+       
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? birthaday { get; set; }
 
         public DateTime created_at { get; set; }

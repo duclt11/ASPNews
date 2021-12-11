@@ -48,10 +48,7 @@ namespace BTL_LT_UD_WEB.Models
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<poster>()
-                .Property(e => e.reset_password)
-                .IsFixedLength()
-                .IsUnicode(false);
+            
 
             modelBuilder.Entity<poster>()
                 .Property(e => e.avatar)

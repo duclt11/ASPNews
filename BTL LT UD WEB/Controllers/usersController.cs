@@ -85,7 +85,7 @@ namespace BTL_LT_UD_WEB.Controllers
                     }
                     else
                     {
-                        user.avatar = "";
+                        
                         var f = Request.Files["ImageFile"];
                         if (f != null && f.ContentLength > 0)
                         {
@@ -132,25 +132,32 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "email,username,fullname,password,birthaday")] users users)
+        public ActionResult Edit([Bind(Include = "user_id, email,username,fullname,password,birthaday")] users users)
         {
             try
             {
-                var f = Request.Files["ImageFile"];
-                if (f != null && f.ContentLength > 0)
+                if (ModelState.IsValid)
                 {
-                    string FileName = System.IO.Path.GetFileName(f.FileName);
-                    string UploadPath = Server.MapPath("~/images/user/" + FileName);
-                    f.SaveAs(UploadPath);
-                    users.avatar = FileName;
+                    var f = Request.Files["ImageFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        string FileName = System.IO.Path.GetFileName(f.FileName);
+
+                        string UploadPath = Server.MapPath("~/images/user/" + FileName);
+                        f.SaveAs(UploadPath);
+                        users.avatar = FileName;
+                        db.Entry(users).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                   
                 }
-                db.Entry(users).State = EntityState.Modified;
-                db.SaveChanges();
+                else
+                    db.Entry(users).State = EntityState.Unchanged;
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "Lỗi nhập dữ liệu!";
+                ViewBag.Error = "Lỗi nhập dữ liệu!"+ex.ToString();
                 return View(users);
             }
 

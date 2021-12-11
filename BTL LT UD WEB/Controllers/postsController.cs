@@ -58,7 +58,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "post_id,title,description,content,avatar,created_at,category_id,poster_id")] posts posts)
         {
             try
@@ -74,6 +74,7 @@ namespace BTL_LT_UD_WEB.Controllers
                         f.SaveAs(UploadPath);
                         posts.avatar = FileName;
                     }
+                    posts.created_at = DateTime.Now;
                     db.posts.Add(posts);
                     db.SaveChanges();
                 }
@@ -108,8 +109,8 @@ namespace BTL_LT_UD_WEB.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "post_id,title,description,content,avatar,created_at,category_id,poster_id")] posts posts)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "post_id,title,description,avatar,created_at,category_id,poster_id")] posts posts)
         {
 
             try
@@ -121,14 +122,19 @@ namespace BTL_LT_UD_WEB.Controllers
                     string UploadPath = Server.MapPath("~/images/post/" + FileName);
                     f.SaveAs(UploadPath);
                     posts.avatar = FileName;
+                    db.Entry(posts).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
-                db.Entry(posts).State = EntityState.Modified;
-                db.SaveChanges();
+
+
+
+
+                db.Entry(posts).State = EntityState.Unchanged;
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "Lỗi nhập dữ liệu!" + ex.Message;
+                ViewBag.Error = "Lỗi nhập dữ liệu!" + ex.ToString();
                 ViewBag.category_id = new SelectList(db.categories, "category_id", "category_name", posts.category_id);
                 ViewBag.poster_id = new SelectList(db.poster, "poster_id", "email", posts.poster_id);
                 return View(posts);

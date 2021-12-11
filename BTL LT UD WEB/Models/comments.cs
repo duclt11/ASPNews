@@ -12,7 +12,7 @@ namespace BTL_LT_UD_WEB.Models
         public int comment_id { get; set; }
 
         [Required]
-        [StringLength(1000)]
+        
         public string content { get; set; }
 
         [Required]
