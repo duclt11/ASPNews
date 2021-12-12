@@ -6,12 +6,12 @@ namespace BTL_LT_UD_WEB.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class categories
+    public partial class category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public categories()
+        public category()
         {
-            posts = new HashSet<posts>();
+            posts = new HashSet<post>();
         }
 
         [Key]
@@ -24,6 +24,6 @@ namespace BTL_LT_UD_WEB.Models
         public DateTime created_at { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<posts> posts { get; set; }
+        public virtual ICollection<post> posts { get; set; }
     }
 }

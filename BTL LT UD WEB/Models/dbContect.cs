@@ -8,34 +8,34 @@ namespace BTL_LT_UD_WEB.Models
     public partial class dbContect : DbContext
     {
         public dbContect()
-            : base("name=dbContect1")
+            : base("name=dbContect")
         {
         }
 
-        public virtual DbSet<admins> admins { get; set; }
-        public virtual DbSet<categories> categories { get; set; }
-        public virtual DbSet<comments> comments { get; set; }
-        public virtual DbSet<poster> poster { get; set; }
-        public virtual DbSet<posts> posts { get; set; }
-        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<admin> admins { get; set; }
+        public virtual DbSet<category> categories { get; set; }
+        public virtual DbSet<poster> posters { get; set; }
+        public virtual DbSet<post> posts { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<comment> comments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<admins>()
+            modelBuilder.Entity<admin>()
                 .Property(e => e.email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<admins>()
+            modelBuilder.Entity<admin>()
                 .Property(e => e.password)
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<admins>()
+            modelBuilder.Entity<admin>()
                 .Property(e => e.reset_password)
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<admins>()
+            modelBuilder.Entity<admin>()
                 .Property(e => e.avatar)
                 .IsUnicode(false);
 
@@ -48,28 +48,24 @@ namespace BTL_LT_UD_WEB.Models
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            
-
             modelBuilder.Entity<poster>()
                 .Property(e => e.avatar)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<posts>()
+            modelBuilder.Entity<post>()
                 .Property(e => e.avatar)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<users>()
+            modelBuilder.Entity<user>()
                 .Property(e => e.email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<users>()
+            modelBuilder.Entity<user>()
                 .Property(e => e.password)
                 .IsFixedLength()
                 .IsUnicode(false);
 
-           
-
-            modelBuilder.Entity<users>()
+            modelBuilder.Entity<user>()
                 .Property(e => e.avatar)
                 .IsUnicode(false);
         }

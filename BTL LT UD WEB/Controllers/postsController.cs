@@ -18,7 +18,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // GET: posts
         public ActionResult Index(string searchStr, int? page)
         {
-            var posts = db.posts.Include(p => p.categories).Include(p => p.poster);
+            var posts = db.posts.Include(p => p.category).Include(p => p.poster);
 
             if (!String.IsNullOrEmpty(searchStr))
             {
@@ -38,7 +38,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            posts posts = db.posts.Find(id);
+            post posts = db.posts.Find(id);
             if (posts == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace BTL_LT_UD_WEB.Controllers
         public ActionResult Create()
         {
             ViewBag.category_id = new SelectList(db.categories, "category_id", "category_name");
-            ViewBag.poster_id = new SelectList(db.poster, "poster_id", "username");
+            ViewBag.poster_id = new SelectList(db.posters, "poster_id", "username");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "post_id,title,description,content,avatar,created_at,category_id,poster_id")] posts posts)
+        public ActionResult Create([Bind(Include = "post_id,title,description,content,avatar,created_at,category_id,poster_id")] post posts)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu!" + ex.Message;
                 ViewBag.category_id = new SelectList(db.categories, "category_id", "category_name", posts.category_id);
-                ViewBag.poster_id = new SelectList(db.poster, "poster_id", "username", posts.poster_id);
+                ViewBag.poster_id = new SelectList(db.posters, "poster_id", "username", posts.poster_id);
                 return View(posts);
             }        
         }
@@ -95,13 +95,13 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            posts posts = db.posts.Find(id);
+            post posts = db.posts.Find(id);
             if (posts == null)
             {
                 return HttpNotFound();
             }
             ViewBag.category_id = new SelectList(db.categories, "category_id", "category_name", posts.category_id);
-            ViewBag.poster_id = new SelectList(db.poster, "poster_id", "username", posts.poster_id);
+            ViewBag.poster_id = new SelectList(db.posters, "poster_id", "username", posts.poster_id);
             return View(posts);
         }
 
@@ -110,7 +110,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "post_id,title,description,avatar,created_at,category_id,poster_id")] posts posts)
+        public ActionResult Edit([Bind(Include = "post_id,title,description,avatar,created_at,category_id,poster_id")] post posts)
         {
 
             try
@@ -136,7 +136,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu!" + ex.ToString();
                 ViewBag.category_id = new SelectList(db.categories, "category_id", "category_name", posts.category_id);
-                ViewBag.poster_id = new SelectList(db.poster, "poster_id", "email", posts.poster_id);
+                ViewBag.poster_id = new SelectList(db.posters, "poster_id", "email", posts.poster_id);
                 return View(posts);
             }
         }
@@ -148,7 +148,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            posts posts = db.posts.Find(id);
+            post posts = db.posts.Find(id);
             if (posts == null)
             {
                 return HttpNotFound();
@@ -161,7 +161,7 @@ namespace BTL_LT_UD_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            posts posts = db.posts.Find(id);
+            post posts = db.posts.Find(id);
             db.posts.Remove(posts);
             db.SaveChanges();
             return RedirectToAction("Index");

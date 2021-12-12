@@ -18,7 +18,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // GET: comments
         public ActionResult Index(string searchStr, int? page)
         {
-            var comments = db.comments.Include(c => c.posts).Include(c => c.users);
+            var comments = db.comments.Include(c => c.post).Include(c => c.user);
 
             if (!String.IsNullOrEmpty(searchStr))
             {
@@ -38,7 +38,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            comments comments = db.comments.Find(id);
+            comment comments = db.comments.Find(id);
             if (comments == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "comment_id,content,status,user_id,datecomment,post_id")] comments comments)
+        public ActionResult Create([Bind(Include = "comment_id,content,status,user_id,datecomment,post_id")] comment comments)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            comments comments = db.comments.Find(id);
+            comment comments = db.comments.Find(id);
             if (comments == null)
             {
                 return HttpNotFound();
@@ -95,7 +95,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "comment_id,content,status,user_id,datecomment,post_id")] comments comments)
+        public ActionResult Edit([Bind(Include = "comment_id,content,status,user_id,datecomment,post_id")] comment comments)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            comments comments = db.comments.Find(id);
+            comment comments = db.comments.Find(id);
             if (comments == null)
             {
                 return HttpNotFound();
@@ -128,7 +128,7 @@ namespace BTL_LT_UD_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            comments comments = db.comments.Find(id);
+            comment comments = db.comments.Find(id);
             db.comments.Remove(comments);
             db.SaveChanges();
             return RedirectToAction("Index");

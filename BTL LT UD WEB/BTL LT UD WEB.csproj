@@ -145,14 +145,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\admins.cs" />
-    <Compile Include="Models\categories.cs" />
-    <Compile Include="Models\comments.cs" />
+    <Compile Include="Models\admin.cs" />
+    <Compile Include="Models\category.cs" />
+    <Compile Include="Models\comment.cs" />
     <Compile Include="Models\dbContect.cs" />
+    <Compile Include="Models\post.cs" />
     <Compile Include="Models\poster.cs" />
-    <Compile Include="Models\posts.cs" />
-    <Compile Include="Models\users.cs" />
+    <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

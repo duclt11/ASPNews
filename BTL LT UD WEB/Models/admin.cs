@@ -6,7 +6,7 @@ namespace BTL_LT_UD_WEB.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class admins
+    public partial class admin
     {
         [Key]
         public int admin_id { get; set; }

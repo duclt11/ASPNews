@@ -50,7 +50,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            users users = db.users.Find(id);
+            user users = db.users.Find(id);
             if (users == null)
             {
                 return HttpNotFound();
@@ -69,18 +69,19 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "email, username, fullname, password, birthaday")] users user)
+        public ActionResult Create([Bind(Include = "email, username, fullname, password, birthaday")] user user)
         {
             
             try
             {
                 if(ModelState.IsValid)
                 {
-                    
-                    var check = db.users.FirstOrDefault(p => p.email == user.email);
-                    if (check!=null)
+
+                    var check1 = db.users.FirstOrDefault(p => p.email == user.email);
+                    var check2 = db.posters.FirstOrDefault(p => p.email == user.email);
+                    if (check1 != null || check2 != null)
                     {
-                        ViewBag.IsExist = "Email nay da ton tai";
+                        ViewBag.IsExist = "Email này đã tồn tại trong User hoặc Poster";
                         return View(user);
                     }
                     else
@@ -118,7 +119,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            users user = db.users.Find(id);
+            user user = db.users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -132,12 +133,16 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "user_id, email,username,fullname,password,birthaday")] users users)
+        public ActionResult Edit([Bind(Include = "user_id, email,username,fullname,password,avatar,birthaday,created_at")] user users)
         {
+            //var old = db.users.FirstOrDefault(u => u.user_id == users.user_id);
+            //users.avatar = old.avatar;
+            //users.created_at = old.created_at;
             try
             {
                 if (ModelState.IsValid)
                 {
+                   
                     var f = Request.Files["ImageFile"];
                     if (f != null && f.ContentLength > 0)
                     {
@@ -146,13 +151,12 @@ namespace BTL_LT_UD_WEB.Controllers
                         string UploadPath = Server.MapPath("~/images/user/" + FileName);
                         f.SaveAs(UploadPath);
                         users.avatar = FileName;
-                        db.Entry(users).State = EntityState.Modified;
-                        db.SaveChanges();
+                        
                     }
-                   
+                    db.Entry(users).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
-                else
-                    db.Entry(users).State = EntityState.Unchanged;
+                    
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -170,7 +174,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            users users = db.users.Find(id);
+            user users = db.users.Find(id);
             if (users == null)
             {
                 return HttpNotFound();
@@ -183,7 +187,7 @@ namespace BTL_LT_UD_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            users users = db.users.Find(id);
+            user users = db.users.Find(id);
             db.users.Remove(users);
             db.SaveChanges();
             return RedirectToAction("Index");

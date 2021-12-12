@@ -37,7 +37,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            categories categories = db.categories.Find(id);
+            category categories = db.categories.Find(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -56,7 +56,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "category_id,category_name,created_at")] categories categories)
+        public ActionResult Create([Bind(Include = "category_id,category_name,created_at")] category categories)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            categories categories = db.categories.Find(id);
+            category categories = db.categories.Find(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -88,7 +88,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "category_id,category_name,created_at")] categories categories)
+        public ActionResult Edit([Bind(Include = "category_id,category_name,created_at")] category categories)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            categories categories = db.categories.Find(id);
+            category categories = db.categories.Find(id);
             if (categories == null)
             {
                 return HttpNotFound();
@@ -119,7 +119,7 @@ namespace BTL_LT_UD_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            categories categories = db.categories.Find(id);
+            category categories = db.categories.Find(id);
             db.categories.Remove(categories);
             db.SaveChanges();
             return RedirectToAction("Index");

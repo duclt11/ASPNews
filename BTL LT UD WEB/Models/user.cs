@@ -6,17 +6,16 @@ namespace BTL_LT_UD_WEB.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("poster")]
-    public partial class poster
+    public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public poster()
+        public user()
         {
-            posts = new HashSet<post>();
+            comments = new HashSet<comment>();
         }
 
         [Key]
-        public int poster_id { get; set; }
+        public int user_id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -33,17 +32,15 @@ namespace BTL_LT_UD_WEB.Models
         [StringLength(128)]
         public string password { get; set; }
 
-      
+        [StringLength(200)]
         public string avatar { get; set; }
-
-        public string phone { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? birthaday { get; set; }
 
-        public DateTime created_at { get; set; }
+        public DateTime? created_at { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<post> posts { get; set; }
+        public virtual ICollection<comment> comments { get; set; }
     }
 }

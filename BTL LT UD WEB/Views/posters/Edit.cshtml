@@ -79,7 +79,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body table-responsive">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("edit","posters",FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -88,11 +88,14 @@
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.poster_id)
-
+                            <input type="hidden" value="@Model.created_at" name="created_at" />
+                            <input type="hidden" value="@Model.avatar" name="avatar" />
                             <div class="form-group">
-                                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*@Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="control-label col-md-2">Email</div> 
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*<div class="form-control">@Model.email</div>*@
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control"} } )
                                     @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -124,8 +127,15 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.avatar, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.avatar, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.avatar, "", new { @class = "text-danger" })
+                                    @*@Html.EditorFor(model => model.avatar, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.avatar, "", new { @class = "text-danger" })*@
+                                    @{
+                                        string ImagePath = "~/images/poster/" + Model.avatar;
+                                     }
+                                    <img id="output" class="img-rounded" alt="ảnh" width="180" height="200" src="@Url.Content(ImagePath)" />
+                                        <p><label for="ufile" style="cursor:pointer;">Chọn file ảnh</label></p>
+                                    <input name="ImageFile" id="ufile" type="file" style="display:none;" onchange="loadFile(event)" />
+                                    @*<input type="hidden" value="@Model.avatar" name="avatar" />*@
                                 </div>
                             </div>
 
@@ -145,19 +155,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.created_at, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                            
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Save" class="btn btn-default" />
                                 </div>
                             </div>
+
+                           
                         </div>
                     }
 
@@ -179,7 +185,12 @@
     </aside>
     <!-- /.control-sidebar -->
 </div>
-
+<script>
+    var loadFile = function () {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
 
 
 

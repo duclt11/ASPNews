@@ -45,7 +45,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            admins admins = db.admins.Find(id);
+            admin admins = db.admins.Find(id);
             if (admins == null)
             {
                 return HttpNotFound();
@@ -63,7 +63,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "admin_id,email,username,fullname,password,reset_password,avatar,birthaday,created_at")] admins admins)
+        public ActionResult Create([Bind(Include = "admin_id,email,username,fullname,password,reset_password,avatar,birthaday,created_at")] admin admins)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            admins admins = db.admins.Find(id);
+            admin admins = db.admins.Find(id);
             if (admins == null)
             {
                 return HttpNotFound();
@@ -95,7 +95,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "admin_id,email,username,fullname,password,reset_password,avatar,birthaday,created_at")] admins admins)
+        public ActionResult Edit([Bind(Include = "admin_id,email,username,fullname,password,reset_password,avatar,birthaday,created_at")] admin admins)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            admins admins = db.admins.Find(id);
+            admin admins = db.admins.Find(id);
             if (admins == null)
             {
                 return HttpNotFound();
@@ -126,7 +126,7 @@ namespace BTL_LT_UD_WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            admins admins = db.admins.Find(id);
+            admin admins = db.admins.Find(id);
             db.admins.Remove(admins);
             db.SaveChanges();
             return RedirectToAction("Index");
