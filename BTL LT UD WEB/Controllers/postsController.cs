@@ -65,15 +65,7 @@ namespace BTL_LT_UD_WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    posts.avatar = "";
-                    var f = Request.Files["ImageFile"];
-                    if (f != null && f.ContentLength > 0)
-                    {
-                        string FileName = System.IO.Path.GetFileName(f.FileName);
-                        string UploadPath = Server.MapPath("~/images/post/" + FileName);
-                        f.SaveAs(UploadPath);
-                        posts.avatar = FileName;
-                    }
+                    
                     posts.created_at = DateTime.Now;
                     db.posts.Add(posts);
                     db.SaveChanges();
@@ -115,21 +107,8 @@ namespace BTL_LT_UD_WEB.Controllers
 
             try
             {
-                var f = Request.Files["ImageFile"];
-                if (f != null && f.ContentLength > 0)
-                {
-                    string FileName = System.IO.Path.GetFileName(f.FileName);
-                    string UploadPath = Server.MapPath("~/images/post/" + FileName);
-                    f.SaveAs(UploadPath);
-                    posts.avatar = FileName;
-                    db.Entry(posts).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-
-
-
-
-                db.Entry(posts).State = EntityState.Unchanged;
+                db.Entry(posts).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

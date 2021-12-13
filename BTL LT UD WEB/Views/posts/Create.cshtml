@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Create";
 }
-<script src="~/Plugin/ckeditor/ckeditor.js"></script>
+
+
 <style>
     .btn.btn-success.col-12 a {
         color: white;
@@ -111,24 +112,24 @@
                                 @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-12">
                                     @*@Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })*@
-
+        @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })*@
+                                    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
                                     @Html.TextAreaFor(model => model.content, new { @id = "ckeContent" })
                                     <script>
-                                        CKEDITOR.replace("ckeContent");
+                                        CKEDITOR.replace('ckeContent');
                                     </script>
 
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.avatar, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-12">
                                     <img id="output" class="img-rounded" alt="ảnh" width="180" height="200" src="~/images/post/no-image-news.png" />
                                     <p><label for="ufile" style="cursor:pointer;">Chọn file ảnh</label></p>
                                     <input name="ImageFile" id="ufile" type="file" style="display:none;" onchange="loadFile(event)"
                                 </div>
-                            </div>
+                            </div>*@
 
                            
 

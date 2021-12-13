@@ -137,10 +137,10 @@
                         {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.categories.category_id)
+                            @Html.DisplayFor(modelItem => item.category.category_id)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.categories.category_name)
+                            @Html.DisplayFor(modelItem => item.category.category_name)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.poster.username)
@@ -154,14 +154,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.content)
                         </td>
-                        <td>
-                            @{
-                                string ImagePath = "~/images/post/" + item.avatar;
-                            }
-                            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
-                            <br />
-                            @Html.DisplayFor(modelItem => item.avatar)
-                        </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.created_at)
                         </td>

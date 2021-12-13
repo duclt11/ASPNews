@@ -9,22 +9,17 @@ namespace BTL_LT_UD_WEB.Models
     public partial class comment
     {
         [Key]
-        [Column(Order = 0)]
         public int comment_id { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
+        [Required]
         public string content { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(1000)]
         public string status { get; set; }
 
         public int? user_id { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
         public DateTime datecomment { get; set; }
 
         public int? post_id { get; set; }

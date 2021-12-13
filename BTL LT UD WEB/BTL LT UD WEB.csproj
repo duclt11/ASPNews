@@ -151,6 +151,7 @@
     <Compile Include="Models\dbContect.cs" />
     <Compile Include="Models\post.cs" />
     <Compile Include="Models\poster.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

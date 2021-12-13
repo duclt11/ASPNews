@@ -97,7 +97,7 @@
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.post_id)
-
+                            <input type="hidden" value="@Model.created_at" name="created_at" />
                             <div class="form-group">
                                 @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-12">
@@ -127,14 +127,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.avatar, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     <img id="output" class="img-rounded" alt="ảnh" width="180" height="200" src="@Url.Content(ImagePath)" />
                                     <p><label for="ufile" style="cursor:pointer;">Chọn file ảnh</label></p>
                                     <input name="ImageFile" id="ufile" type="file" style="display:none;" onchange="loadFile(event)" />
                                 </div>
-                            </div>
+                            </div>*@
 
                             
                             <div class="form-group">

@@ -33,7 +33,6 @@ namespace BTL_LT_UD_WEB.Models
         [StringLength(128)]
         public string password { get; set; }
 
-      
         public string avatar { get; set; }
 
         public string phone { get; set; }
