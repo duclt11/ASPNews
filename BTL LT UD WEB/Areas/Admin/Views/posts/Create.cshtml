@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model BTL_LT_UD_WEB.Models.post
+<script>
+    var loadFile = function () {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+<script src="~/Content/ckeditor5/ckeditor.js"></script>
+<section class="content">
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+            @using (Html.BeginForm("Create", "posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <h4>Create Post</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @*@Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })*@
+
+                            <script src="~/Content/ckeditor5/ckeditor.js"></script>
+                            @Html.TextAreaFor(model => model.content, new { @id = "ckeContent" })
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector('#ckeContent'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            </script>
+
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.avatar, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                <img id="output" class="img-rounded" alt="ảnh" width="180" height="200" src="~/images/post/no-image-news.png" />
+                                <p><label for="ufile" style="cursor:pointer;">Chọn file ảnh</label></p>
+                                <input name="ImageFile" id="ufile" type="file" style="display:none;" onchange="loadFile(event)"
+                            </div>
+                        </div>*@
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.category_id, "Tên danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("category_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.poster_id, "Người post", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("poster_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.poster_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            <hr>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+

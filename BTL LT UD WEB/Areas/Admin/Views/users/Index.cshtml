@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.user>
+@using PagedList.Mvc;
+
+<section class="content">
+    <h2>Quan li User</h2>
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-1">
+                    <span class="btn btn-success col-12" style="height:38px;color:white;">@Html.ActionLink("Thêm", "Create", "users")</span>
+                </div>
+                <div class="col-lg-11 col-md-11 col-11">
+                    <form action="" id="form-search">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Tìm kiếm user...">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <table class="table table-light" border="1">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            User_name
+                        </th>
+                        <th>
+                            Full_name
+                        </th>
+                        <th>
+                            Avatar
+                        </th>
+                        <th>
+                            Birthday
+                        </th>
+                        <th>
+                            Ngày tham gia
+                        </th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.user_id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fullname)
+                            </td>
+                            <td>
+                                @{
+                                    string ImagePath = "~/images/user/" + item.avatar;
+                                }
+                                <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                                <br />
+                                @Html.DisplayFor(modelItem => item.avatar)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.birthaday)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.created_at)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.user_id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.user_id }) |
+                                @Html.ActionLink("Comment", "CommentUser", "Comment", new {id=item.user_id})
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
+            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
+            <hr>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+

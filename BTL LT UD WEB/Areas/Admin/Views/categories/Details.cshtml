@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details category</h2>
+@model BTL_LT_UD_WEB.Models.category
+
+
+<div class="card">
+    <!-- /.card-header -->
+    <div class="card-body table-responsive">
+        <div>
+            <h4>Detail Category</h4>
+            <hr />
+            <div class="dl-horizontal">
+                <div class="form-group row col-12">
+                    <div class="col-md-4 font-weight-bold">
+                        @Html.DisplayNameFor(model => model.category_name) :
+                    </div>
+                    <div class="col-md-8 ">
+                        @Html.DisplayFor(model => model.category_name)
+                    </div>
+                </div>
+                <div class="form-group row col-12">
+                    <div class="col-md-4 font-weight-bold">
+                        @Html.DisplayNameFor(model => model.created_at) :
+                    </div>
+                    <div class="col-md-8 ">
+                        @Html.DisplayFor(model => model.created_at)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.category_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        <hr>
+    </div>
+    <!-- /.card-body -->
+</div>
