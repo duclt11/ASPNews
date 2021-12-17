@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -102,7 +103,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "post_id,title,description,avatar,created_at,category_id,poster_id")] post posts)
+        public ActionResult Edit([Bind(Include = "post_id,title,description,avatar,created_at,category_id,poster_id, content")] post posts)
         {
 
             try
@@ -111,9 +112,17 @@ namespace BTL_LT_UD_WEB.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (DbEntityValidationException ex)
             {
-                ViewBag.Error = "Lỗi nhập dữ liệu!" + ex.ToString();
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    ViewBag.Error += eve.Entry.Entity.GetType().Name + " " + eve.Entry.State+'\n';
+                    foreach(var e in eve.ValidationErrors)
+                    {
+                        ViewBag.Error += e.PropertyName + " " + e.ErrorMessage + '\n';
+                    }
+                }
+                
                 ViewBag.category_id = new SelectList(db.categories, "category_id", "category_name", posts.category_id);
                 ViewBag.poster_id = new SelectList(db.posters, "poster_id", "email", posts.poster_id);
                 return View(posts);

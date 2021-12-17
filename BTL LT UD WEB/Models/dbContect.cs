@@ -17,7 +17,6 @@ namespace BTL_LT_UD_WEB.Models
         public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<poster> posters { get; set; }
         public virtual DbSet<post> posts { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<user> users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -28,17 +27,21 @@ namespace BTL_LT_UD_WEB.Models
 
             modelBuilder.Entity<admin>()
                 .Property(e => e.password)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<admin>()
-                .Property(e => e.reset_password)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<admin>()
                 .Property(e => e.avatar)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<category>()
+                .HasMany(e => e.posts)
+                .WithOptional(e => e.category)
+                .HasForeignKey(e => e.category_id);
+
+            modelBuilder.Entity<category>()
+                .HasMany(e => e.posts1)
+                .WithOptional(e => e.category1)
+                .HasForeignKey(e => e.category_id);
 
             modelBuilder.Entity<poster>()
                 .Property(e => e.email)
@@ -49,9 +52,15 @@ namespace BTL_LT_UD_WEB.Models
                 .IsFixedLength()
                 .IsUnicode(false);
 
-            modelBuilder.Entity<post>()
-                .Property(e => e.avatar)
-                .IsUnicode(false);
+            modelBuilder.Entity<poster>()
+                .HasMany(e => e.posts)
+                .WithOptional(e => e.poster)
+                .HasForeignKey(e => e.poster_id);
+
+            modelBuilder.Entity<poster>()
+                .HasMany(e => e.posts1)
+                .WithOptional(e => e.poster1)
+                .HasForeignKey(e => e.poster_id);
 
             modelBuilder.Entity<user>()
                 .Property(e => e.email)

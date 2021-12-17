@@ -14,14 +14,13 @@ namespace BTL_LT_UD_WEB.Models
         [Required]
         public string content { get; set; }
 
-        [Required]
-        [StringLength(1000)]
-        public string status { get; set; }
-
+       
+       
+        
         public int? user_id { get; set; }
 
         public DateTime datecomment { get; set; }
-
+       
         public int? post_id { get; set; }
 
         public virtual post post { get; set; }

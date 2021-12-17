@@ -24,12 +24,8 @@ namespace BTL_LT_UD_WEB.Models
         public string fullname { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(50)]
         public string password { get; set; }
-
-        [Required]
-        [StringLength(10)]
-        public string reset_password { get; set; }
 
         [Required]
         [StringLength(100)]

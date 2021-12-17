@@ -12,6 +12,7 @@ namespace BTL_LT_UD_WEB.Models
         public category()
         {
             posts = new HashSet<post>();
+            posts1 = new HashSet<post>();
         }
 
         [Key]
@@ -25,5 +26,8 @@ namespace BTL_LT_UD_WEB.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<post> posts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<post> posts1 { get; set; }
     }
 }

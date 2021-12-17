@@ -20,10 +20,7 @@ namespace BTL_LT_UD_WEB.Controllers
         {
             var comments = db.comments.Include(c => c.post).Include(c => c.user);
 
-            if (!String.IsNullOrEmpty(searchStr))
-            {
-                comments = comments.Where(e => e.status.Contains(searchStr));
-            }
+           
             //Sắp xếp trước khi phân trang
             comments = comments.OrderBy(e => e.comment_id);
             int pageSize = 10;
@@ -141,6 +138,11 @@ namespace BTL_LT_UD_WEB.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult CommentUser(int id)
+        {
+            return View();
         }
     }
 }

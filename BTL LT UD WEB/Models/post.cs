@@ -28,8 +28,6 @@ namespace BTL_LT_UD_WEB.Models
         [Required]
         public string content { get; set; }
 
-        [Required]
-        [StringLength(100)]
         public string avatar { get; set; }
 
         public DateTime created_at { get; set; }
@@ -40,9 +38,13 @@ namespace BTL_LT_UD_WEB.Models
 
         public virtual category category { get; set; }
 
+        public virtual category category1 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comment> comments { get; set; }
 
         public virtual poster poster { get; set; }
+
+        public virtual poster poster1 { get; set; }
     }
 }

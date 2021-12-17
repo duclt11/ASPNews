@@ -60,6 +60,7 @@ namespace BTL_LT_UD_WEB.Controllers
         {
             if (ModelState.IsValid)
             {
+                categories.created_at = DateTime.Now;
                 db.categories.Add(categories);
                 db.SaveChanges();
                 return RedirectToAction("Index");
