@@ -66,6 +66,15 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
+                @{
+            if (Session["adminId"] != null)
+            {
+                 <li class="nav-item d-none d-sm-inline-block nav-link">
+                     @Html.ActionLink("Thoát", "Logout", "Admins")
+                    
+                </li>
+            }
+                }
             </ul>
         </nav>
         <!-- /.navbar -->

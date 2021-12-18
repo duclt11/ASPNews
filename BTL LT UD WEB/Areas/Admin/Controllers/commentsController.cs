@@ -7,10 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_LT_UD_WEB.Models;
+using BTL_LT_UD_WEB.Security;
 using PagedList;
 
 namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
 {
+    [Authenticate]
     public class commentsController : Controller
     {
         private dbContect db = new dbContect();
