@@ -1,13 +1,16 @@
-﻿
+﻿@model IEnumerable<BTL_LT_UD_WEB.Models.comment>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CommentUser";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.post>
-@using PagedList.Mvc;
-<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+
+@*@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.comment>
+@using PagedList.Mvc*@ 
 <section class="content">
     <div class="card">
+        <h2>Người dùng Comment</h2>
         <!-- /.card-header -->
         <div class="card-body table-responsive">
             <div class="row">
@@ -33,25 +36,15 @@
                 <tr>
 
                     <th>
-                        Tên danh mục
-                    </th>
-                    <th>
-                        Tên người viết
-                    </th>
-                    <th>
-                        Tiêu đề
-                    </th>
-                    <th>
-                        Mô tả
-                    </th>
-                    <th>
                         Nội dung
                     </th>
-
                     <th>
-                        Ngày tạo
+                        Ngày đăng
                     </th>
-                    <th>Hành động</th>
+                    <th>
+                        Bài viết
+                    </th>
+
                 </tr>
 
                 @foreach (var item in Model)
@@ -59,40 +52,26 @@
                     <tr>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.category.category_name)
+                            @item.content
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.poster.username)
+                            @item.datecomment
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.description)
-                        </td>
-                        <td>
-                            @Html.Raw(item.content)
+                            <a href="/Admin/Posts/Details/@item.post_id">@item.post.title</a>
+
                         </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.created_at)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.post_id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.post_id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.post_id }) |
-                            @Html.ActionLink("Comment", "PostComment", new { id = item.post_id })
-                        </td>
+
                     </tr>
                 }
 
             </table>
-            <div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
-            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
+            @*<div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
+            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>*@
             <hr>
         </div>
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
 </section>
-

@@ -1,4 +1,4 @@
-namespace BTL_LT_UD_WEB.Models
+﻿namespace BTL_LT_UD_WEB.Models
 {
     using System;
     using System.Collections.Generic;
@@ -20,8 +20,9 @@ namespace BTL_LT_UD_WEB.Models
 
         [Required]
         [StringLength(190)]
+        [Display(Name ="Tiêu đề")]
         public string category_name { get; set; }
-
+        [Display(Name ="Ngày tạo")]
         public DateTime created_at { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

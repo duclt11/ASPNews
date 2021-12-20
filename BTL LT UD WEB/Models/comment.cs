@@ -1,4 +1,4 @@
-namespace BTL_LT_UD_WEB.Models
+﻿namespace BTL_LT_UD_WEB.Models
 {
     using System;
     using System.Collections.Generic;
@@ -12,13 +12,14 @@ namespace BTL_LT_UD_WEB.Models
         public int comment_id { get; set; }
 
         [Required]
+        [Display(Name ="Nội dung")]
         public string content { get; set; }
 
        
        
         
         public int? user_id { get; set; }
-
+        [Display(Name ="Ngày đăng")]
         public DateTime datecomment { get; set; }
        
         public int? post_id { get; set; }

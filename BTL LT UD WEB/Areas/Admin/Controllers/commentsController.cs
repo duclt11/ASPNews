@@ -105,7 +105,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
             ViewBag.post_id = new SelectList(db.posts, "post_id", "title", comments.post_id);
             ViewBag.user_id = new SelectList(db.users, "user_id", "email", comments.user_id);
             return View(comments);
-        }
+        }   
 
         // GET: comments/Delete/5
         public ActionResult Delete(int? id)
@@ -144,6 +144,8 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
 
         public ActionResult CommentUser(int id)
         {
+            //ViewBag.post_id = new SelectList(db.posts, "post_id", "title", comments.post_id);
+            //ViewBag.user_id = new SelectList(db.users, "user_id", "email", comments.user_id);
             return View();
         }
     }

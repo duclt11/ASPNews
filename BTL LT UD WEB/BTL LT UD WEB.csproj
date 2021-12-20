@@ -170,6 +170,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\admins\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\comments\CommentUser.cshtml" />
+    <Content Include="Areas\Admin\Views\users\CommentUser.cshtml" />
+    <Content Include="Areas\Admin\Views\posts\PostComment.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

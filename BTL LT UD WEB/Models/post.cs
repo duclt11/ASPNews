@@ -1,4 +1,4 @@
-namespace BTL_LT_UD_WEB.Models
+﻿namespace BTL_LT_UD_WEB.Models
 {
     using System;
     using System.Collections.Generic;
@@ -18,18 +18,21 @@ namespace BTL_LT_UD_WEB.Models
         public int post_id { get; set; }
 
         [Required]
+        [Display(Name ="Tiêu đề")]
         [StringLength(4000)]
         public string title { get; set; }
 
         [Required]
+        [Display(Name ="Mô tả")]
         [StringLength(4000)]
         public string description { get; set; }
 
         [Required]
+        [Display(Name ="Nội dung")]
         public string content { get; set; }
-
+        [Display(Name ="Ảnh đại diện")]
         public string avatar { get; set; }
-
+        [Display(Name ="Ngày đăng")]
         public DateTime created_at { get; set; }
 
         public int? category_id { get; set; }

@@ -39,7 +39,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
                // return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 return Redirect("/Admin/admins/index");
             }
-            ViewBag.Error = "Khong the dang nhap";
+            ViewBag.Error = "Tài khoản hoặc mật khẩu không chính xác";
             //return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             return View(login);
         }

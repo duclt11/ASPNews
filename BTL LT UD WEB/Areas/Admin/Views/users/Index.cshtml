@@ -5,7 +5,7 @@
 }
 @model PagedList.IPagedList<BTL_LT_UD_WEB.Models.user>
 @using PagedList.Mvc;
-
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 <section class="content">
     <h2>Quan li User</h2>
     <div class="card">
@@ -40,17 +40,15 @@
                             Email
                         </th>
                         <th>
-                            User_name
+                            Tên hiển thị
                         </th>
                         <th>
-                            Full_name
+                            Họ tên
                         </th>
                         <th>
                             Avatar
                         </th>
-                        <th>
-                            Birthday
-                        </th>
+                      
                         <th>
                             Ngày tham gia
                         </th>
@@ -81,16 +79,15 @@
                                 <br />
                                 @Html.DisplayFor(modelItem => item.avatar)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.birthaday)
-                            </td>
+                            
                             <td>
                                 @Html.DisplayFor(modelItem => item.created_at)
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.user_id }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.user_id }) |
-                                @Html.ActionLink("Comment", "CommentUser", "Comment", new {id=item.user_id})
+                                @Html.ActionLink("Comment", "CommentUser", new {id=item.user_id})
+                                
                             </td>
                         </tr>
                     }

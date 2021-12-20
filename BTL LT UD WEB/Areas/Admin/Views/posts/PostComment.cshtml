@@ -1,22 +1,23 @@
-﻿
+﻿@model IEnumerable<BTL_LT_UD_WEB.Models.comment>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "PostComment";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.post>
-@using PagedList.Mvc;
+@*@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.comment>
+@using PagedList.Mvc*@
 <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 <section class="content">
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body table-responsive">
+            <h2>Comment trong bài viết</h2>
             <div class="row">
-                <div class="col-lg-1 col-md-1 col-1">
+                @*<div class="col-lg-1 col-md-1 col-1">
                     <span class="btn btn-success col-12" style="height:38px;color:white;leight-height:45px">@Html.ActionLink("Thêm", "Create")</span>
-                </div>
+                </div>*@
                 <div class="col-lg-11 col-md-11 col-11">
                     <form action="" id="form-search">
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="searchstr" id="searchstr" placeholder="Tìm kiếm bài viết...">
                                 <div class="input-group-append">
@@ -25,7 +26,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </form>
                 </div>
             </div>
@@ -33,24 +34,15 @@
                 <tr>
 
                     <th>
-                        Tên danh mục
-                    </th>
-                    <th>
-                        Tên người viết
-                    </th>
-                    <th>
-                        Tiêu đề
-                    </th>
-                    <th>
-                        Mô tả
+                        Người comment
                     </th>
                     <th>
                         Nội dung
                     </th>
-
                     <th>
-                        Ngày tạo
+                        Ngày đăng
                     </th>
+
                     <th>Hành động</th>
                 </tr>
 
@@ -59,24 +51,16 @@
                     <tr>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.category.category_name)
+                            <a href="/Admin/users/Details/@item.user_id">@item.user.username</a>
+                            
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.poster.username)
+                            @item.content
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.description)
-                        </td>
-                        <td>
-                            @Html.Raw(item.content)
+                            @item.datecomment
                         </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.created_at)
-                        </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.post_id }) |
                             @Html.ActionLink("Details", "Details", new { id = item.post_id }) |
@@ -87,8 +71,8 @@
                 }
 
             </table>
-            <div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
-            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>
+            @*<div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
+            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>*@
             <hr>
         </div>
         <!-- /.card-body -->

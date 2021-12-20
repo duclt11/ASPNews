@@ -165,5 +165,10 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult PostComment(int? id)
+        {
+            var cmt = db.comments.Where(u => u.post_id == id).ToList();
+            return View(cmt);
+        }
     }
 }

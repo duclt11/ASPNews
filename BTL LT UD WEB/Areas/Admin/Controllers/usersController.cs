@@ -16,21 +16,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
     public class usersController : Controller
     {
         private dbContect db = new dbContect();
-        public ActionResult Register()
-        {
-            return View();
-        }
-        //GET Login
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        // GET: users
-        public ActionResult home()
-        {
-            return View();
-        }
+       
         public ActionResult Index(string searchStr, int? page)
         {
             var user = from us in db.users select us;
@@ -71,7 +57,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "email, username, fullname, password, birthaday")] user user)
+        public ActionResult Create([Bind(Include = "email, username, fullname, password")] user user)
         {
             
             try
@@ -202,6 +188,14 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+  
+        public ActionResult CommentUser(int? id)
+        {
+            
+            var allCmt = db.comments.Where(e => e.user_id == id).ToList();
+            
+            return View(allCmt);
         }
     }
 }
