@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+@using HtmlAgilityPack;
+@using BTL_LT_UD_WEB.Controllers
+@using PagedList.Mvc
+@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.post>
+<style>
+    .avatar {
+        height: 240px;
+        width: 100px;
+    }
+</style>
+<link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap-grid.css" rel="stylesheet" />
+<link href="~/Content/css/main.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@{
+    Html.RenderAction("Newest", "posts");
+}
+<div class="sections mt-5 pt-5 pb-5 bg-light">
+    <div class="row mb-5">
+        <div class="col-md-12 text-center">
+            <h2>Tin tức <span class="badge badge-secondary">New</span></h2>
+        </div>
+    </div>
+
+
+    <div class="container-md">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tin tức sản phẩm</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Công nghệ</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Tổng hợp</a>
+            </li>
+        </ul>
+        <div class="tab-content mt-3" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="row">
+
+                    <div class="col-md-8">
+
+                        <ul class="list-unstyled mb-5">
+                            @foreach (var item in Model)
+                            {
+                                <li class="media" style="margin-bottom:20px;">
+                                    <div class="mycrop2 mr-4">
+                                        @{ 
+                                            //var htmlDoc = new HtmlDocument();
+                                            //htmlDoc.LoadHtml(item.content);
+                                            //string htmlBody = "";
+                                            //if (htmlDoc.DocumentNode.SelectSingleNode("//img") == null)
+                                            //{
+                                            //    htmlBody = "#";
+                                            //}
+                                            //else
+                                            //{
+                                            //    htmlBody = htmlDoc.DocumentNode.SelectSingleNode("//img").Attributes["src"].Value;
+                                            //}
+                                            var htmlBody = postsController.GetSrcImage(item.content);
+
+                                        }
+                                        <a href="/posts/details/?id=@item.post_id">
+                                           
+                                            <img src="@htmlBody" alt="Loi"/>
+                                        </a>
+                                    </div>
+                                    <div class="media-body text-justify">
+                                        <a href="/posts/details/?id=@item.post_id"><h5 class="mt-0 mb-3">@item.title</h5> </a>
+                                        @item.description
+                                    </div>
+                                </li>
+                            }
+
+
+
+
+                        </ul>
+
+
+                        <!-- #region Phan trang -->
+
+
+                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
+
+
+
+
+
+
+                        
+
+
+                    </div>
+
+                    <div class="col-md-4">
+                        @{
+                                var hot = ViewBag.Hot as IEnumerable<BTL_LT_UD_WEB.Models.post>;
+                                foreach (var item in hot)
+                                {
+                                    var src = BTL_LT_UD_WEB.Controllers.postsController.GetSrcImage(item.content);
+                                <div class="card bg-dark text-white mt-5">
+                                    <img src="@src" class="card-img" alt="loi">
+                                    <div class="card-img-overlay mybg1">
+                                       
+                                            <h5 class="card-title"><a href="/posts/Details/?id=@item.post_id" style="color:white; text-decoration:none;">@item.title</a></h5>
+                                            <p class="card-text">@item.description</p>
+                                        
+                                        
+                                        <p class="card-text">Update on @item.created_at.ToString("dd/MM/yyyy")</p>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+
+
+
+                      
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+    </div>
+
+
+
+</div>

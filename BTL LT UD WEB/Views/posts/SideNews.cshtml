@@ -1,0 +1,102 @@
+﻿
+
+<div class="col-lg-4">
+    <div class="sidebar">
+        <div class="sidebar-widget">
+            <h2 class="sw-title">Tin tức nổi bật</h2>
+            <div class="news-list">
+                @{
+                    var hotNews = ViewBag.HotNews as IEnumerable<BTL_LT_UD_WEB.Models.post>;
+                    var popularNews = ViewBag.PopularNews as IEnumerable<BTL_LT_UD_WEB.Models.post>;
+                    var catagory = ViewBag.Catagory as IEnumerable<BTL_LT_UD_WEB.Models.category>;
+                }
+                @foreach (var item in hotNews)
+                        {
+                            string src = BTL_LT_UD_WEB.Controllers.postsController.GetSrcImage(item.content);
+                        <div class="nl-item">
+                            <div class="nl-img" >
+                                <img src="@src" style="width:100px; height:64px;" />
+                            </div>
+                            <div class="nl-title">
+                                <a href="/posts/Details/?id=@item.post_id">@item.title</a>
+                            </div>
+                        </div>
+                }
+
+              
+            </div>
+        </div>
+
+
+        <div class="sidebar-widget">
+            <div class="tab-news">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#featured">Nổi bật</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#popular">Phổ biến</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#latest">Tin mới</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+
+
+                    <div id="featured" class="container tab-pane active">
+                        @foreach (var item in popularNews)
+                        {
+                            string src = BTL_LT_UD_WEB.Controllers.postsController.GetSrcImage(item.content);
+                            <div class="nl-item">
+                                <div class="nl-img">
+                                    <img src="@src" style="width:100px; height:64px;" />
+                                </div>
+                                <div class="nl-title">
+                                    <a href="/posts/Details/?id=@item.post_id">@item.title</a>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div id="popular" class="container tab-pane active">
+                        ...
+                    </div>
+                    <div id="lastest" class="container tab-pane active">
+                        ...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-widget">
+            <div class="image">
+                <a href="https://htmlcodex.com"><img src="~/images/img/ads-2.jpg" alt="Image"></a>
+            </div>
+        </div>
+
+        <div class="sidebar-widget">
+            <h2 class="sw-title">Danh mục khác</h2>
+            <div class="category">
+                <ul>
+                    @foreach(var item in catagory)
+                    {
+                            <li><a href="#">@item.category_name</a><span>(98)</span></li>
+                    }
+                    
+                    
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="sidebar-widget">
+            <div class="image">
+                <a href="https://htmlcodex.com"><img src="img/ads-2.jpg" alt="Image"></a>
+            </div>
+        </div>
+
+
+    </div>
+</div>

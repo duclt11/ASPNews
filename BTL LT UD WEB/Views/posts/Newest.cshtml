@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BTL_LT_UD_WEB.Models.post>
+@using BTL_LT_UD_WEB.Controllers
+
+<!---- FOCUS NEWS ---->
+<div class="focus-new mt-5 slider" >
+    <div class="container-md" style="margin-top: 200px;">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2>Tin tức nổi bật <span class="badge badge-secondary">New</span></h2>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-deck">
+                    @foreach (var item in Model)
+                    {
+                    <div class="card">
+                        @{
+                            var htmlBody = postsController.GetSrcImage(item.content);
+
+                        }
+                        <div class="crop-img1 hovergallery">
+
+                            <img src="@htmlBody" class="card-img-top" alt="loi"/>
+                        </div>
+                        <div class="card-body">
+                            <h5>@Html.ActionLink(@item.title, "Details", "posts", new { id = item.post_id }, htmlAttributes: new { @class = "card-title" })</h5>
+
+
+                            <p class="card-text">@item.description</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                Update on
+                                @item.created_at.ToString("MM/dd/yyyy HH:mm")
+
+                            </small>
+                        </div>
+                    </div>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     public partial class post
     {
@@ -28,6 +29,7 @@
         public string description { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name ="Nội dung")]
         public string content { get; set; }
         [Display(Name ="Ảnh đại diện")]

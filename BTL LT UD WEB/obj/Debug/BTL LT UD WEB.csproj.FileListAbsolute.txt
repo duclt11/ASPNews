@@ -117,7 +117,6 @@ D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.IO.Compression.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.IO.Compression.ZipFile.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.IO.FileSystem.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.Net.Http.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.Net.Sockets.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.Reflection.Metadata.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
@@ -137,22 +136,6 @@ D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\vbc.exe.config
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\vbc.rsp
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\VBCSCompiler.exe
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\roslyn\VBCSCompiler.exe.config
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\Antlr3.Runtime.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\EntityFramework.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\EntityFramework.SqlServer.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\Microsoft.Web.Infrastructure.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\Newtonsoft.Json.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\PagedList.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\PagedList.Mvc.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.Helpers.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.Mvc.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.Optimization.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.Razor.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.WebPages.Deployment.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.WebPages.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\System.Web.WebPages.Razor.dll
-D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\WebGrease.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\EntityFramework.xml
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\EntityFramework.SqlServer.xml
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\PagedList.xml
@@ -172,3 +155,8 @@ D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\obj\Debug\BTL LT UD WEB.csproj.CoreCompile
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\obj\Debug\BTL LT UD WEB.csproj.CopyComplete
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\obj\Debug\BTL LT UD WEB.dll
 D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\obj\Debug\BTL LT UD WEB.pdb
+D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\obj\Debug\BTL_LT_UD_WEB.Migrations.duc.resources
+D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\obj\Debug\BTL LT UD WEB.csproj.GenerateResource.cache
+D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\HtmlAgilityPack.dll
+D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\HtmlAgilityPack.pdb
+D:\CSDLWeb\BTL-LTUD-WEB\BTL LT UD WEB\bin\HtmlAgilityPack.xml

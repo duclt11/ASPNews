@@ -5,12 +5,9 @@
 }
 
 @model BTL_LT_UD_WEB.Models.post
-<script>
-    var loadFile = function () {
-        var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    }
-</script>
+
+<link href="~/Content/summernote-0.8.18-dist/summernote.min.css" rel="stylesheet" />
+<script src="~/Content/summernote-0.8.18-dist/summernote.min.js"></script>
 <script src="~/Content/ckeditor5/ckeditor.js"></script>
 <section class="content">
     <div class="card">
@@ -29,6 +26,7 @@
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.post_id)
+                    @Html.HiddenFor(model =>model.content)
                     <input type="hidden" value="@Model.created_at" name="created_at" />
                     <div class="form-group">
                         @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -51,16 +49,19 @@
                         <div class="col-md-12">
                             @*@Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })*@
-                            <input type="hidden" value="@Model.content" name="content"/>
+                            <input type="hidden" value="@Model.content" name="content" />
                             @Html.TextAreaFor(model => model.content, new { @id = "ckeContent" })
                             <script>
-                                ClassicEditor
-                                    .create(document.querySelector('#ckeContent'))
-                                    .catch(error => {
-                                        console.error(error);
-                                    });
+                                //ClassicEditor
+                                //    .create(document.querySelector('#ckeContent'))
+                                //    .catch(error => {
+                                //        console.error(error);
+                                //    });
+                                $(document).ready(function () {
+                                    $('#ckeContent').summernote();
+                                });
                             </script>
-                            
+
                         </div>
                     </div>
 

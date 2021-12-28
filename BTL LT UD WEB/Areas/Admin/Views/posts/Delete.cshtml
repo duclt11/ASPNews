@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
 @model BTL_LT_UD_WEB.Models.post
 <section class="content">
     <div class="card">
@@ -14,15 +15,16 @@
                 <dl class="dl-horizontal">
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.category.category_name) :
+                           Danh mục
                         </div>
+                        @Html.HiddenFor(model=>model.poster_id)
                         <div class="col-md-8 ">
                             @Html.DisplayFor(model => model.category.category_name)
                         </div>
                     </div>
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.poster.email) :
+                           Người đăng
                         </div>
                         <div class="col-md-8 ">
                             @Html.DisplayFor(model => model.poster.email)
@@ -30,7 +32,7 @@
                     </div>
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.title) :
+                           Tiêu đề
                         </div>
                         <div class="col-md-8 ">
                             @Html.DisplayFor(model => model.title)
@@ -39,7 +41,7 @@
 
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.description) :
+                            Mô tả
                         </div>
                         <div class="col-md-8 ">
                             @Html.DisplayFor(model => model.description)
@@ -48,7 +50,7 @@
 
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.content) :
+                           Nội dung
                         </div>
                         <div class="col-md-8 ">
                             @Html.Raw(Model.content)
@@ -56,18 +58,11 @@
                     </div>
 
 
-                    <div class="form-group row col-12">
-                        <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.avatar) :
-                        </div>
-                        <div class="col-md-8 ">
-                            @Html.DisplayFor(model => model.avatar)
-                        </div>
-                    </div>
+                   
 
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.created_at) :
+                            Ngày đăng
                         </div>
                         <div class="col-md-8 ">
                             @Html.DisplayFor(model => model.created_at)

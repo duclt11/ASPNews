@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+@model BTL_LT_UD_WEB.Models.post
+<link href="~/Content/css/main.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+<style>
+    .breadcrumb-item>li>a:hover {
+        color: #000000;
+    }
+
+    
+    .title-details {
+        font-size: 32px;
+        line-height: 150%;
+        font-family: "Merriweather",serif;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+</style>
+<div class="breadcrumb-wrap" style="margin-top: 150px;">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" style=" color: #FF6F61; text-decoration: none;">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#" style=" color: #FF6F61; text-decoration: none;">@Model.title</a></li>
+            <li class="breadcrumb-item active">Chi tiết tin tức</li>
+        </ul>
+    </div>
+</div>
+<div class="single-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="sn-container">
+                    <div class="title-details">@Model.title</div>
+                    <div class="sn-content" style="margin:0px; padding:0px;">
+                        @Html.Raw(Model.content)
+                    </div>
+
+
+                    <div style="display: flex;">
+                        <p><strong>Tác giả: @Model.poster.username - </strong></p><br />
+                        <p><strong> @Model.created_at.ToString("MM/dd/yyyy")</strong></p>
+
+                    </div>
+
+
+
+                    @{
+                        Html.RenderAction("GetComment", "posts");
+
+                    }
+
+
+                </div>
+
+            </div>
+            @{
+                Html.RenderAction("SideNews", "posts");
+            }
+
+        </div>
+    </div>
+</div>
