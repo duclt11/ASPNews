@@ -34,7 +34,18 @@ namespace BTL_LT_UD_WEB.Controllers
             var cata = db.categories.ToList().Take(5);
             return PartialView("_Catagory", cata);
         }
+        public ActionResult PostByCategory(int? id_catagory, int? page)
+        {
+            var posts = db.posts.Where(e=>e.category_id==id_catagory).ToList();
 
+            int pageSize = 7;
+            int pageNumber = (page ?? 1);
+            ViewBag.Name = db.categories.Where(e => e.category_id == id_catagory).FirstOrDefault().category_name;
+            
+
+            return View(posts.ToPagedList(pageNumber, pageSize));
+           
+        }
        [ChildActionOnly]
        public ActionResult Newest()
         {

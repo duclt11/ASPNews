@@ -31,6 +31,23 @@
         [Display(Name = "Họ tên")]
         public string fullname { get; set; }
 
+        [Display(Name = "Số điện thoại")]
+        public string phone { get; set; }
+
+        [StringLength(50)]
+        [Display(Name = "Địa chỉ")]
+        public string address { get; set; }
+
+        [StringLength(50)]
+        [Display(Name = "Tỉnh/thành")]
+        public string ProvinceID { get; set; }
+        [StringLength(50)]
+        [Display(Name = "Quận/Huyện")]
+        public string DistrictID { get; set; }
+
+        [StringLength(50)]
+        [Display(Name = "cập nhật mật khẩu")]
+        public string ResetPasswordCode { get; set; }
         [Required]
         [StringLength(128)]
         [Display(Name = "Mật khẩu")]
@@ -39,7 +56,8 @@
         [StringLength(200)]
         public string avatar { get; set; }
 
-
+        [Display(Name = "Ngày sinh")]
+        public DateTime? birthaday { get; set; }
         [Display(Name = "Ngày tham gia")]
         public DateTime? created_at { get; set; }
 

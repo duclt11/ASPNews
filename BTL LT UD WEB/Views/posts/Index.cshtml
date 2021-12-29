@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPost.cshtml";
 }
-@using HtmlAgilityPack;
+
 @using BTL_LT_UD_WEB.Controllers
 @using PagedList.Mvc
 @model PagedList.IPagedList<BTL_LT_UD_WEB.Models.post>
@@ -43,7 +43,7 @@
         <div class="tab-content mt-3" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                <div class="row">
+                <div class="row" id="main">
 
                     <div class="col-md-8">
 
@@ -53,17 +53,7 @@
                                 <li class="media" style="margin-bottom:20px;">
                                     <div class="mycrop2 mr-4">
                                         @{ 
-                                            //var htmlDoc = new HtmlDocument();
-                                            //htmlDoc.LoadHtml(item.content);
-                                            //string htmlBody = "";
-                                            //if (htmlDoc.DocumentNode.SelectSingleNode("//img") == null)
-                                            //{
-                                            //    htmlBody = "#";
-                                            //}
-                                            //else
-                                            //{
-                                            //    htmlBody = htmlDoc.DocumentNode.SelectSingleNode("//img").Attributes["src"].Value;
-                                            //}
+                                            
                                             var htmlBody = postsController.GetSrcImage(item.content);
 
                                         }
@@ -88,24 +78,16 @@
                         <!-- #region Phan trang -->
 
 
-                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
-
-
-
-
-
-
-                        
-
+                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page}), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
 
                     </div>
 
                     <div class="col-md-4">
                         @{
                                 var hot = ViewBag.Hot as IEnumerable<BTL_LT_UD_WEB.Models.post>;
-                                foreach (var item in hot)
-                                {
-                                    var src = BTL_LT_UD_WEB.Controllers.postsController.GetSrcImage(item.content);
+                            foreach (var item in hot)
+                            {
+                                var src = BTL_LT_UD_WEB.Controllers.postsController.GetSrcImage(item.content);
                                 <div class="card bg-dark text-white mt-5">
                                     <img src="@src" class="card-img" alt="loi">
                                     <div class="card-img-overlay mybg1">
@@ -120,11 +102,6 @@
                             }
                         }
 
-
-
-
-
-                      
 
                     </div>
 

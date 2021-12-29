@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<BTL_LT_UD_WEB.Models.comment>
-<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 <style>
 
@@ -28,18 +27,20 @@
                         <div class="bg-white p-2">
                             <div class="d-flex flex-row user-info">
                                 @{
-                                    string src;
-                                    if (item.user.avatar == string.Empty)
+                                    
+                                    if (item.user.avatar == null)
                                     {
-                                        src = "~/images/download.png";
+                                        
+                                        <img class="rounded-circle" src="~/images/user_no_avatar.jpg" width="48" height="48" />
                                     }
                                     else
                                     {
-                                        src = item.user.avatar;
+                                       
+                                        <img class="rounded-circle" src="~/images/user/@item.user.avatar" width="48" height="48" />
                                     }
 
                                 }
-                                <img class="rounded-circle" src="~/images/user/@src" width="48" height="48" />
+
                                 <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">@item.user.username</span><span class="date text-black-50">@item.datecomment.ToString("dd/MM/yyyy")</span></div>
                             </div>
                             <div class="mt-2">

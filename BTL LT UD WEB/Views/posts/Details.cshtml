@@ -1,13 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "Details";
+   
     Layout = "~/Views/Shared/_LayoutPost.cshtml";
 }
 @model BTL_LT_UD_WEB.Models.post
-<link href="~/Content/css/main.css" rel="stylesheet" />
-<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/css/bootstrap-grid.min.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+
+
 <style>
     .breadcrumb-item>li>a:hover {
         color: #000000;
@@ -26,6 +24,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="/" style=" color: #FF6F61; text-decoration: none;">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="#" style=" color: #FF6F61; text-decoration: none;">@Model.category.category_name</a></li>
             <li class="breadcrumb-item"><a href="#" style=" color: #FF6F61; text-decoration: none;">@Model.title</a></li>
             <li class="breadcrumb-item active">Chi tiết tin tức</li>
         </ul>
@@ -47,15 +46,10 @@
                         <p><strong> @Model.created_at.ToString("MM/dd/yyyy")</strong></p>
 
                     </div>
-
-
-
                     @{
                         Html.RenderAction("GetComment", "posts");
 
                     }
-
-
                 </div>
 
             </div>

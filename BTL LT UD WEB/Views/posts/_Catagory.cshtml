@@ -9,7 +9,7 @@
     @foreach (var item in Model)
     {
         <li class="nav-item">
-            @Html.ActionLink(item.category_name, "GetPostByCatagory", "posts", new { id_catagory = item.category_id }, htmlAttributes: new { @class = "nav-link" })
+            @Html.ActionLink(item.category_name, "PostByCategory", "posts", new { id_catagory = item.category_id }, htmlAttributes: new { @class = "nav-link" })
 
         </li>
     }

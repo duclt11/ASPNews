@@ -63,7 +63,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateInput(false)]
+        //[ValidateInput(false)]
         public ActionResult Create([Bind(Include = "post_id,title,description,content,created_at,category_id,poster_id")] post posts)
         {
             try
@@ -92,24 +92,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
                 return View(posts);
             }        
         }
-        [HttpPost]
-        public byte[] UploadImage(HttpPostedFileBase file)
-        {
-            Stream fileStream = file.InputStream;
-            var mStreamer = new MemoryStream();
-            mStreamer.SetLength(fileStream.Length);
-            fileStream.Read(mStreamer.GetBuffer(), 0, (int)fileStream.Length);
-            mStreamer.Seek(0, SeekOrigin.Begin);
-            byte[] fileBytes = mStreamer.GetBuffer();
-            Stream stream = new MemoryStream(fileBytes);
-
-            //string result = System.Text.Encoding.UTF8.GetString(fileBytes);
-            var img = Bitmap.FromStream(stream);
-            Directory.CreateDirectory("~/images/post" + img);
-            return fileBytes;
-
-        }
-
+        
         // GET: posts/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -131,15 +114,20 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateInput(false)]
+        //[ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "post_id,title,description,created_at,category_id,poster_id,content")] post posts)
         {
 
             try
             {
-                db.Entry(posts).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                // posts.content = Request.Form["content"];
+                    db.Entry(posts).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                //posts.content = Request.Form["content"];
+                // return View(posts);
             }
             catch (DbEntityValidationException ex)
             {

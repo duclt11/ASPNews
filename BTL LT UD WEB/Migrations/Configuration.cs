@@ -9,7 +9,7 @@ namespace BTL_LT_UD_WEB.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BTL_LT_UD_WEB.Models.dbContect context)

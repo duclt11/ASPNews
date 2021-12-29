@@ -19,7 +19,7 @@
                     <form action="" id="form-search">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Tìm kiếm user...">
+                                <input type="text" class="form-control" name="searchstr" id="searchstr" placeholder="Tìm kiếm user...">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default">
                                         <i class="fa fa-search"></i>
@@ -46,11 +46,13 @@
                             Họ tên
                         </th>
                         <th>
-                            Avatar
+                            SDT
                         </th>
-                      
                         <th>
-                            Ngày tham gia
+                            Địa chỉ
+                        </th>
+                        <th>
+                            Avatar
                         </th>
                         <th>Hành động</th>
                     </tr>
@@ -72,22 +74,24 @@
                                 @Html.DisplayFor(modelItem => item.fullname)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.address) - @Html.DisplayFor(modelItem => item.DistrictID) - @Html.DisplayFor(modelItem => item.ProvinceID)
+                            </td>
+                            <td>
                                 @{
                                     string ImagePath = "~/images/user/" + item.avatar;
                                 }
                                 <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
                                 <br />
-                                @Html.DisplayFor(modelItem => item.avatar)
-                            </td>
-                            
-                            <td>
-                                @Html.DisplayFor(modelItem => item.created_at)
+                                @*@Html.DisplayFor(modelItem => item.avatar)*@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = item.user_id }) |
                                 @Html.ActionLink("Details", "Details", new { id = item.user_id }) |
-                                @Html.ActionLink("Comment", "CommentUser", new {id=item.user_id})
-                                
+                                @Html.ActionLink("Comment", "CommentUser", new { id = item.user_id })
+
                             </td>
                         </tr>
                     }

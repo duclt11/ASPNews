@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "PostByCategory";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+@using BTL_LT_UD_WEB.Controllers
+@using PagedList.Mvc
+@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.post>
+<style>
+    .avatar {
+        height: 240px;
+        width: 100px;
+    }
+</style>
+<link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/bootstrap-grid.css" rel="stylesheet" />
+<link href="~/Content/css/main.css" rel="stylesheet" />
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div class="container-md" style="margin-top:200px">
+    <div class="tab-content mt-3" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row">
+
+                <div class="col-md-8">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" style=" color: #FF6F61; text-decoration: none;">Trang chủ</a></li>
+                        <li class="breadcrumb-item active"><a href="#" style=" color: #FF6F61; text-decoration: none;">@ViewBag.Name</a></li>
+
+                    </ul>
+                    @{
+                        if (Model.LongCount() == 0)
+                        {
+                            <div style="text-align:center" class="text-black">Chưa có bài viết nào</div>
+                        }
+                        else
+                        {
+                            <ul class="list-unstyled mb-5">
+                                @foreach (var item in Model)
+                                {
+                                    <li class="media" style="margin-bottom:20px;">
+                                        <div class="mycrop2 mr-4">
+                                            @{
+
+                                                var htmlBody = postsController.GetSrcImage(item.content);
+
+                                            }
+                                            <a href="/posts/details/?id=@item.post_id">
+
+                                                <img src="@htmlBody" alt="Loi" />
+                                            </a>
+                                        </div>
+                                        <div class="media-body text-justify">
+                                            <a href="/posts/details/?id=@item.post_id"><h5 class="mt-0 mb-3">@item.title</h5> </a>
+                                            @item.description
+                                        </div>
+                                    </li>
+                                }
+
+
+
+
+                            </ul>
+
+
+                            <!-- #region Phan trang -->
+
+
+                            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
+                        }
+                    }
+
+
+                </div>
+
+
+                @{
+                    Html.RenderAction("SideNews", "posts");
+                }
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
