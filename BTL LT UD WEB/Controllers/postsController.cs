@@ -94,13 +94,15 @@ namespace BTL_LT_UD_WEB.Controllers
             return htmlBody;
         }
 
-        public ActionResult GetComment(int id)
+        public ActionResult GetComment(int id, int? page)
         {
-            var allCmt = db.comments.Where(d => d.post_id == id).ToList();
+            var allCmt = db.comments.Where(d => d.post_id == id).OrderByDescending(e=>e.datecomment).ToList();
             ViewBag.post_id = id;
-            return PartialView("GetComment", allCmt);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return PartialView("GetComment", allCmt.ToPagedList(pageNumber, pageSize));
         }
-
+      
 
         [AuthenticateUser]
         [HttpPost]
@@ -117,7 +119,7 @@ namespace BTL_LT_UD_WEB.Controllers
             };
             db.comments.Add(cmt);
             db.SaveChanges();
-
+            //return PartialView("GetComment");
             return RedirectToAction("Details", "posts", new { id = id });
         }
         protected override void Dispose(bool disposing)
