@@ -1,0 +1,276 @@
+﻿
+@model BTL_LT_UD_WEB.Models.user
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+
+<style>
+    body {
+        margin: 0px auto;
+    }
+
+    .header {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+
+    .form-group.d-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    button.btn.btn-default {
+        border-radius: 0px !important;
+        border-color: transparent;
+        width: 15%;
+        border-top-right-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+        background-color: #fff;
+    }
+
+    input[type=text], input[type=password] {
+        margin: 0px !important;
+    }
+
+    .form-control {
+        border-top-left-radius: 30px !important;
+        border-bottom-left-radius: 30px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+    }
+
+    .row.d-flex {
+        align-items: center;
+    }
+
+    #form-search {
+        margin-top: 14px;
+    }
+
+    .row.d-flex .col-md-5 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .row .text-center {
+        margin-left: 20px;
+    }
+
+        .row .text-center a {
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    .navbar-nav.mr-auto li a {
+        color: white;
+        cursor: pointer;
+        margin-right: 20px;
+        text-decoration: none;
+    }
+
+    .navbar-nav.mr-auto li {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+        .navbar-nav.mr-auto li:hover a {
+            color: aqua;
+        }
+
+    .navbar.navbar-expand-lg {
+        padding: 8px 0px !important;
+    }
+
+    .menu-account {
+        margin-top: 50px;
+    }
+
+        .menu-account h3 {
+            background-color: #31353d;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 15px 10px;
+            text-transform: uppercase;
+            margin: 0;
+            width: 255px;
+            border-left: 5px solid #3c3f44;
+        }
+
+        .menu-account ul {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            padding: 0px;
+            width: 255px;
+            list-style: none;
+            margin-top: 0px;
+        }
+
+            .menu-account ul li {
+                border-bottom: 1px solid lightgrey;
+                width: 255px;
+                margin-left: -1px;
+                margin-top: 0px;
+            }
+
+                .menu-account ul li:last-child {
+                    border-bottom-width: 0px;
+                }
+
+                .menu-account ul li a {
+                    text-decoration: none;
+                    padding: 15px 15px;
+                    color: #6c717a;
+                    font-size: 18px;
+                    display: block;
+                    font-family: times new roman;
+                }
+
+                    .menu-account ul li a:hover {
+                        color: #958457;
+                    }
+
+
+
+    .form .line {
+        border-bottom: 1px solid orange;
+    }
+
+    .form .small-line {
+        position: relative;
+        width: 135px;
+        border-bottom: 3px solid red;
+    }
+
+
+    #submit {
+        padding-left: 20px;
+        padding-right: 92px;
+        margin-left: 0px;
+        color: white;
+        border: none;
+        width: 100px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-radius: 3px;
+        background-color: red;
+        margin-right: 20px;
+    }
+
+        #submit:hover {
+            color: orange;
+        }
+
+    #reset-form:hover {
+        color: orange;
+    }
+
+    #reset-form {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 0px;
+        color: white;
+        border: none;
+        width: 100px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-radius: 3px;
+        background-color: red;
+    }
+</style>
+<div style="padding-top:150px;">
+    <div class="breadcrumb-wrap" ">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item">Trang chủ</li>
+                <li class="breadcrumb-item">Tài khoản</li>
+                <li class="breadcrumb-item active">Quản lý tài khoản</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Single News Start-->
+    <div class="single-news">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <div class="menu-account">
+                            <h3>
+                                <span style="font-size: 18px;">
+                                    Quản lý tài khoản
+                                </span>
+                            </h3>
+                            <ul>
+                                <li class="active"><a href=@Url.Action("EditAccount","Home", new { id=Session["userid"] })><i class="fas fa-user"></i>&ensp; Đổi thông tin cá nhân</a></li>
+                                <li><a href=@Url.Action("ChangePass","Home", new { id=Session["userid"] })><i class="fa fa-key"></i> &ensp;Thay đổi mật khẩu</a></li>
+                                <li><a href="/Home/Index"><i class="fas fa-sign-out-alt"></i> &ensp;Thoát</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="sn-container">
+                        <div class="sn-content">
+                            <div class="taikhoan">
+                                <div style="margin-top: 15px;">
+
+                                    <h3 style="color:#31353d; font-size: 22px; padding-bottom: 15px; margin-left: 180px; ">THÔNG CÁ NHÂN</h3>
+                                    <div class="line" style="border-top: 1.2px dotted  #31353d;width:539px;margin-left: 0px; padding-bottom: 15px;"></div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email" class="col-3 col-form-label">Email</label>
+                                    <div class="col-6">
+                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger", @style = "margin-top: -15px; color: red; font-size: 18px" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="fullname" class="col-3 col-form-label">Họ và tên</label>
+                                    <div class="col-6">
+                                        @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger", @style = "margin-top: -15px; color: red; font-size: 18px" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="phone" class="col-3 col-form-label">Số điện thoại</label>
+                                    <div class="col-6">
+                                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger", @style = "margin-top: -15px; color: red; font-size: 18px" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="address" class="col-3 col-form-label">Địa chỉ</label>
+                                    <div class="col-6">
+                                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @style = "width:100%", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger", @style = "margin-top: -15px; color: red; font-size: 18px" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="offset-3 col-6">
+                                        <a class="btn btn-danger" href=@Url.Action("EditAccount","Home", new { id=Session["userid"] })> Đổi thông tin cá nhân</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ---------- -->
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Single News End-->

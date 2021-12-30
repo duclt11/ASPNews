@@ -1,0 +1,322 @@
+﻿
+@model BTL_LT_UD_WEB.Models.user
+
+@{
+    ViewBag.Title = "info";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+
+<style>
+    .img-rounded, .img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .menu-account {
+        margin-top: 0 !important;
+    }
+
+    body {
+        margin: 0px auto;
+    }
+
+    body {
+        margin: 0px auto;
+    }
+
+    .header {
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+
+    .form-group.d-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    button.btn.btn-default {
+        border-radius: 0px !important;
+        border-color: transparent;
+        width: 15%;
+        border-top-right-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+        background-color: #fff;
+    }
+
+    input[type=text], input[type=password] {
+        margin: 0px !important;
+    }
+
+    .form-control.text-box.single-line,
+    .col-md-12 .form-control {
+        border-radius: 30px !important;
+    }
+
+    .row.d-flex {
+        align-items: center;
+    }
+
+    #form-search {
+        margin-top: 14px;
+    }
+
+    .row.d-flex .col-md-5 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .row .text-center {
+        margin-left: 20px;
+    }
+
+        .row .text-center a {
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    .navbar-nav.mr-auto li a {
+        color: white;
+        cursor: pointer;
+        margin-right: 20px;
+        text-decoration: none;
+    }
+
+    .navbar-nav.mr-auto li {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+        .navbar-nav.mr-auto li:hover a {
+            color: aqua;
+        }
+
+    .navbar.navbar-expand-lg {
+        padding: 8px 0px !important;
+    }
+
+    .menu-account {
+        margin-top: 50px;
+    }
+
+        .menu-account h3 {
+            background-color: #31353d;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 15px 10px;
+            text-transform: uppercase;
+            margin: 0;
+            width: 255px;
+            border-left: 5px solid #3c3f44;
+        }
+
+        .menu-account ul {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            padding: 0px;
+            width: 255px;
+            list-style: none;
+            margin-top: 0px;
+        }
+
+            .menu-account ul li {
+                border-bottom: 1px solid lightgrey;
+                width: 255px;
+                margin-left: -1px;
+                margin-top: 0px;
+            }
+
+                .menu-account ul li:last-child {
+                    border-bottom-width: 0px;
+                }
+
+                .menu-account ul li a {
+                    text-decoration: none;
+                    padding: 15px 15px;
+                    color: #6c717a;
+                    font-size: 18px;
+                    display: block;
+                    font-family: times new roman;
+                }
+
+                    .menu-account ul li a:hover {
+                        color: #958457;
+                    }
+
+
+
+    .form .line {
+        border-bottom: 1px solid orange;
+    }
+
+    .form .small-line {
+        position: relative;
+        width: 135px;
+        border-bottom: 3px solid red;
+    }
+
+
+    #submit {
+        padding-left: 20px;
+        padding-right: 92px;
+        margin-left: 0px;
+        color: white;
+        border: none;
+        width: 100px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-radius: 3px;
+        background-color: red;
+        margin-right: 20px;
+    }
+
+        #submit:hover {
+            color: orange;
+        }
+
+    #reset-form:hover {
+        color: orange;
+    }
+
+    #reset-form {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 0px;
+        color: white;
+        border: none;
+        width: 100px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-radius: 3px;
+        background-color: red;
+    }
+</style>
+<div class="breadcrumb-wrap" style="margin-top: 150px;">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Home/Index">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/Home/userInfo">Tài khoản</a></li>
+            <li class="breadcrumb-item active">Đổi mật khẩu</li>
+        </ul>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Single News Start-->
+<div class="single-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <div class="menu-account">
+                        <h3>
+                            <span style="font-size: 18px;">
+                                Quản lý tài khoản
+                            </span>
+                        </h3>
+                        <ul>
+                            <li class="active"><a href=@Url.Action("EditAccount","Home", new { id=Session["userid"] })><i class="fas fa-user"></i>&ensp; Đổi thông tin cá nhân</a></li>
+                            <li><a href=@Url.Action("ChangePass","Home", new { id=Session["userid"] })><i class="fa fa-key"></i> &ensp;Thay đổi mật khẩu</a></li>
+                            <li><a href="/Home/Index"><i class="fas fa-sign-out-alt"></i> &ensp;Thoát</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="sn-container">
+                    <div class="sn-content">
+                        <div class="taikhoan">
+
+                            <div class="card">
+                                <!-- /.card-header -->
+                                <div class="card-body table-responsive">
+                                    @using (Html.BeginForm("ChangePass", "Home", new { id = Session["userid"] }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.user_id)
+                                        @Html.HiddenFor(model => model.username)
+                                        @Html.HiddenFor(model => model.fullname)
+                                        @Html.HiddenFor(model => model.ProvinceID)
+                                        @Html.HiddenFor(model => model.DistrictID)
+                                        @Html.HiddenFor(model => model.address)
+                                        @Html.HiddenFor(model => model.avatar)
+                                        @Html.HiddenFor(model => model.phone)
+
+                                        <input type="hidden" value="@Model.created_at" name="created_at" />
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="input-box">
+                                                    <label style="margin-bottom: 10px;">Email</label>
+                                                    <input name="email" placeholder="Your email address" class=" form-control" type="email" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="input-box">
+                                                    <label style="margin-bottom: 10px;">Mật khẩu cũ</label>
+                                                    <input name="MatKhauCu" placeholder="Mật khẩu cũ" class=" form-control" type="password" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="input-box">
+                                                    <label style="margin-bottom: 10px;">Mật khẩu mới</label>
+                                                    <input name="MatKhauMoi" placeholder="mật khẩu mới" class="form-control" type="password" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="input-box">
+                                                    <label style="margin-bottom: 10px;">Xác nhận mật khẩu</label>
+                                                    <input name="MatKhauXacNhan" placeholder="nhập lại mật khẩu" class=" form-control" type="password" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <p style="margin-left: 192px; color: red; font-size: 18px;">@ViewBag.LoiMatKhau</p>
+
+
+                                        <div class="form-group">
+
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Cập nhật" class="btn btn-success" />
+                                                    <a class="btn btn-danger" href=@Url.Action("userInfo","Home", new { id=Session["userid"] })>Hủy bỏ</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="text-danger">@ViewBag.Error</div>
+                                    }
+                                    <hr>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+
+                        <!-- ---------- -->
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Single News End-->
+
+
+

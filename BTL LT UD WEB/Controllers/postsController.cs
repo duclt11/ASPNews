@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BTL_LT_UD_WEB.Models;
+using BTL_LT_UD_WEB.Security;
 using HtmlAgilityPack;
 using PagedList;
 
@@ -19,7 +20,7 @@ namespace BTL_LT_UD_WEB.Controllers
         // GET: posts
         public ActionResult Index(int? page)
         {
-            var posts = db.posts.OrderBy(e=>e.created_at);
+            var posts = db.posts.OrderByDescending(e=>e.created_at);
           
             int pageSize = 4;
             int pageNumber = (page ?? 1);
@@ -96,12 +97,28 @@ namespace BTL_LT_UD_WEB.Controllers
         public ActionResult GetComment(int id)
         {
             var allCmt = db.comments.Where(d => d.post_id == id).ToList();
+            ViewBag.post_id = id;
             return PartialView("GetComment", allCmt);
         }
-        
-        public ActionResult CreateComment()
+
+
+        [AuthenticateUser]
+        [HttpPost]
+        public ActionResult CreateComment(int? user_id, int? id, string content)
         {
-            return View();
+
+            comment cmt = new comment
+            {
+                user_id = user_id,
+                post_id = id,
+                content = content,
+                datecomment = DateTime.Now
+
+            };
+            db.comments.Add(cmt);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "posts", new { id = id });
         }
         protected override void Dispose(bool disposing)
         {

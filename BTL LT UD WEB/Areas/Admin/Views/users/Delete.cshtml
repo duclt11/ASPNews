@@ -116,6 +116,25 @@
 
                             <div class="form-group row col-12">
                                 <div class="col-md-4 font-weight-bold">
+                                    @Html.DisplayNameFor(model => model.phone) :
+                                </div>
+                                <div class="col-md-8 ">
+                                    @Html.DisplayFor(model => model.phone)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row col-12">
+                                <div class="col-md-4 font-weight-bold">
+                                    @Html.DisplayNameFor(model => model.address) :
+                                </div>
+                                <div class="col-md-8 ">
+                                    @Html.DisplayFor(model => model.address) - @Html.DisplayFor(model => model.DistrictID) - @Html.DisplayFor(model => model.ProvinceID)
+                                </div>
+                            </div>
+     
+                            <div class="form-group row col-12">
+                                <div class="col-md-4 font-weight-bold">
                                     @Html.DisplayNameFor(model => model.avatar) :
                                 </div>
                                 <div class="col-md-8 ">
@@ -130,12 +149,6 @@
                                 <div class="col-md-8 ">
                                     @Html.DisplayFor(model => model.created_at)
                                 </div>
-                            </div>
-                            <div class="form-group row col-12">
-                                <div class="col-md-4 font-weight-bold">
-                                    @ViewBag.Error
-                                </div>
-                                
                             </div>
                         </div>
                         @using (Html.BeginForm())

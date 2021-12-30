@@ -7,11 +7,7 @@
 
 
 <style>
-    .breadcrumb-item>li>a:hover {
-        color: #000000;
-    }
-
-    
+   
     .title-details {
         font-size: 32px;
         line-height: 150%;
@@ -24,7 +20,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="/" style=" color: #FF6F61; text-decoration: none;">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a href="#" style=" color: #FF6F61; text-decoration: none;">@Model.category.category_name</a></li>
+            <li class="breadcrumb-item"><a href="/posts/PostByCategory/?id_catagory=@Model.category.category_id" style=" color: #FF6F61; text-decoration: none;">@Model.category.category_name</a></li>
             <li class="breadcrumb-item"><a href="#" style=" color: #FF6F61; text-decoration: none;">@Model.title</a></li>
             <li class="breadcrumb-item active">Chi tiết tin tức</li>
         </ul>

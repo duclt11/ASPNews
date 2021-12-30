@@ -1,10 +1,6 @@
 ﻿@model IEnumerable<BTL_LT_UD_WEB.Models.comment>
 
-<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-<style>
 
-
-</style>
 @using (Html.BeginForm("CreateComment", "posts"))
 {
 
@@ -27,15 +23,15 @@
                         <div class="bg-white p-2">
                             <div class="d-flex flex-row user-info">
                                 @{
-                                    
+
                                     if (item.user.avatar == null)
                                     {
-                                        
+
                                         <img class="rounded-circle" src="~/images/user_no_avatar.jpg" width="48" height="48" />
                                     }
                                     else
                                     {
-                                       
+
                                         <img class="rounded-circle" src="~/images/user/@item.user.avatar" width="48" height="48" />
                                     }
 
@@ -58,10 +54,27 @@
                 }
 
 
-                <div class="p-2">
-                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
-                    <div class="mt-1 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
-                </div>
+                @if (Session["userid"] != null)
+                {
+                    using (Html.BeginForm("CreateComment", "posts"))
+                    {
+                        <div class="p-2">
+                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="@Session["avatar"]" width="40"><textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea></div>
+                            <div class="mt-1 text-right"><input type="submit" class="btn btn-primary btn-sm shadow-none" value="Post comment"/><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+                        </div>
+                        <input type="hidden" value="@Session["userid"]" name="user_id" />
+                        <input type="hidden" value="@ViewBag.post_id" name="id" />
+                    }
+
+
+
+                }
+                else
+                {
+                    <div class="text-center p-2">Bạn cần <a href="/Home/Login" style="color:white; "> đăng nhập </a> để bình luận</div>
+                    <hr />
+                }
+
 
 
 

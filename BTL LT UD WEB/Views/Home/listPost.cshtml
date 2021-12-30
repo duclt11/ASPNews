@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BTL_LT_UD_WEB.Models.post>
+@{
+    ViewBag.Title = "listPost";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-deck">
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <div class="crop-img1 hovergallery">
+                        <img src="images/daihoi.jpg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        
+                            <h2 class="card-title">@item.title</h2>
+                        
+                            <p>@item.content</p>
+                        <p class="card-text">@item.description</p>
+
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">@item.created_at</small>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

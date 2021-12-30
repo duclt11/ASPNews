@@ -131,6 +131,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
                             f.SaveAs(UploadPath);
                             user.avatar = FileName;
                         }
+                        else user.avatar = "~/images/user_no_avatar.jpg";
                         var xmlDoc = XDocument.Load(Server.MapPath(@"~/assets/client/data/Provinces_Data.xml"));
 
                         var province = xmlDoc.Element("Root").Elements("Item")

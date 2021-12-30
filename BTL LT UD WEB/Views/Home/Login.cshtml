@@ -1,0 +1,57 @@
+﻿@model BTL_LT_UD_WEB.Models.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+<style>
+    .model{
+        width:50vw;
+        height:50vw;
+    }
+    .modal-content{
+        width:40%;
+        padding:30px;
+    }
+    .form-control{
+        border-radius:30px !important;
+    }
+   
+</style>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div id="id01" class="modal" style=" display: block;">
+    <div class="modal-content animate">
+        <div class="imgcontainer">
+            <div>
+                <a class="close" title="Close Modal" href="/Home/Index">x</a>
+            </div>
+            <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+        <div class="container" id="modal-container">
+            <div class="form-group">
+                <label class="control-label col-md-12" for="email"><b>Email</b></label>
+                <div class="col-md-12">
+                    <input class="form-control text-box single-line" placeholder="Email" data-val="true" data-val-length="The field Email must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Email field is required." id="email" name="email" type="email" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                    <div class="text-danger"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-12" for="password"><b>Mật khẩu</b></label>
+                <div class="col-md-12">
+                    <input class="form-control text-box single-line" placeholder="Mật khẩu" true" data-val-length="The field Email must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The Email field is required." id="password" name="password" type="password" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                    <div class="text-danger"></div>
+                </div>
+            </div>
+            <div class="text-danger">@ViewBag.Error</div>
+            <div class="col-md-12">
+                <button type="submit">Đăng nhập</button>
+                <button type="reset" class="cancelbtn">Hủy</button>
+                <span class="psw"> <a href="/user/ForgotPassword">Quên mật khẩu?</a></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+}

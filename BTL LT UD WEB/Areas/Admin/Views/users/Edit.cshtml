@@ -6,6 +6,12 @@
 
 
 @model BTL_LT_UD_WEB.Models.user
+<style>
+    .img-rounded, .img {
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
 <script>
     var loadFile = function () {
         var image = document.getElementById('output');
@@ -66,7 +72,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ProvinceID, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("ProvinceID", new SelectList(Model.ProvinceID), new { @class = "form-control", @id = "ddlProvince" })
+                            @Html.DropDownList("ProvinceID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlProvince" })
                             @Html.ValidationMessageFor(model => model.ProvinceID, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -75,7 +81,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.DistrictID, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownList("DistrictID", new SelectList(Model.DistrictID), new { @class = "form-control", @id = "ddlDistrict" })
+                            @Html.DropDownList("DistrictID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlDistrict" })
                             @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -106,7 +112,7 @@
                             <input type="hidden" value="@Model.avatar" name="avatar" />
                         </div>
                     </div>
-                   
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Save" class="btn btn-default" />
@@ -124,4 +130,5 @@
     </div>
     <!-- /.card -->
 </section>
+
 <script src="/assets/client/js/controller/userController.js"></script>

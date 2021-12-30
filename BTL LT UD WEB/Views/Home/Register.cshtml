@@ -1,0 +1,136 @@
+﻿@model BTL_LT_UD_WEB.Models.user
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPost.cshtml";
+}
+
+<style>
+    .model {
+        width: 50vw;
+        height: 50vw;
+    }
+
+    .modal-content {
+        width: 40%;
+        padding: 10px;
+    }
+
+    .form-control {
+        border-radius: 30px !important;
+    }
+
+    body {
+        overflow-y: hidden;
+    }
+
+    .modal-content {
+        margin: 0px auto 15% auto !important;
+    }
+</style>
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+@*@section nhunghtml{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+}*@
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="id01" class="modal" style=" display: block;">
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <div>
+                    <a class="close" title="Close Modal" href="/Home/Index">x</a>
+                </div>
+                <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container" id="modal-container">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-12" for="email"><b>Nhập email</b></label>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            <div class="text-danger">@ViewBag.IsExist</div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-12" for="username"><b>Tên hiển thị</b></label>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-12" for="fullname"><b>Tên đầy đủ</b></label>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-12" for="phone"><b>Số điện thoại</b></label>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.ProvinceID, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("ProvinceID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlProvince" })
+                            @Html.ValidationMessageFor(model => model.ProvinceID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.DistrictID, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.DropDownList("DistrictID", new SelectList(new string[] { }), new { @class = "form-control", @id = "ddlDistrict" })
+                            @Html.ValidationMessageFor(model => model.DistrictID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label col-md-12" for="password"><b>Tạo Mật khẩu</b></label>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button type="submit">Đăng ký</button>
+                    @*@Html.ActionLink("Hủy", "Index", "posts", htmlAttributes: new { @class = "cancelbtn")})*@
+                    <button type="reset" class="cancelbtn">Hủy</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+}
+
+<script src="~/assets/client/js/controller/userInfo.js"></script>
+

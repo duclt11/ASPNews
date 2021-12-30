@@ -3,11 +3,25 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    tbody tr td{
+        vertical-align:middle;
+    }
+    .table td, .table th{
+        vertical-align:middle;
+    }
+    .img-thumbnail {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border:0px;
+    }
+</style>
 @model PagedList.IPagedList<BTL_LT_UD_WEB.Models.user>
 @using PagedList.Mvc;
 <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 <section class="content">
-    <h2>Quan li User</h2>
+    <h2>Quản lí User</h2>
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body table-responsive">
@@ -19,7 +33,7 @@
                     <form action="" id="form-search">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="searchstr" id="searchstr" placeholder="Tìm kiếm user...">
+                                <input type="text" class="form-control" name="searchstr" id="searchstr"  placeholder="Tìm kiếm user...">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-default">
                                         <i class="fa fa-search"></i>
@@ -60,40 +74,49 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.user_id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.username)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fullname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.address) - @Html.DisplayFor(modelItem => item.DistrictID) - @Html.DisplayFor(modelItem => item.ProvinceID)
-                            </td>
-                            <td>
-                                @{
-                                    string ImagePath = "~/images/user/" + item.avatar;
-                                }
-                                <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
-                                <br />
-                                @*@Html.DisplayFor(modelItem => item.avatar)*@
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.user_id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.user_id }) |
-                                @Html.ActionLink("Comment", "CommentUser", new { id = item.user_id })
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.user_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fullname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address) - @Html.DisplayFor(modelItem => item.DistrictID) - @Html.DisplayFor(modelItem => item.ProvinceID)
+                        </td>
+                        <td>
+                            @{
+                                if (item.avatar == null)
+                                {
+                                                        <img src="~/images/user_no_avatar.jpg" width="100" class="img-thumbnail" />
 
-                            </td>
-                        </tr>
+                                }
+                                else
+                                {
+                                    <img src="~/images/user/@item.avatar" width="100" class="img-thumbnail" />
+                                }
+                                
+                            }
+
+                            <br />
+                            @*@Html.DisplayFor(modelItem => item.avatar)*@
+                        </td>
+                        <td>
+                            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.user_id }) |
+                            @Html.ActionLink("Thông tin", "Details", new { id = item.user_id }) |
+                            @Html.ActionLink("Comment", "CommentUser", new { id = item.user_id })
+
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

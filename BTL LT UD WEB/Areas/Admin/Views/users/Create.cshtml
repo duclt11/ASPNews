@@ -1,10 +1,17 @@
-﻿
+﻿@model BTL_LT_UD_WEB.Models.user
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@model BTL_LT_UD_WEB.Models.user
+<style>
+    .img-rounded, .img {
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
 <script>
     var loadFile = function (event) {
         var image = document.getElementById('output');
@@ -130,8 +137,8 @@
     </div>
     <!-- /.card -->
 </section>
-
 <script src="~/assets/client/js/controller/userController.js"></script>
+
 <script>
     $(function () {
         var dateFormat = "dd/mm/yy",
@@ -142,3 +149,4 @@
                     dateFormat: 'dd/mm/yy'
                 });
     })</script>
+

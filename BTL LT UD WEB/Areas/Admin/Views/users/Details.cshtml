@@ -4,6 +4,16 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 @model BTL_LT_UD_WEB.Models.user
+<style>
+
+
+    .img-thumbnail {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 0px;
+    }
+</style>
 <section class="content">
     <div class="card">
         <!-- /.card-header -->
@@ -64,7 +74,18 @@
                             @{
                                 string ImagePath = "~/images/user/" + Model.avatar;
                             }
-                            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                            @{
+                                if (Model.avatar == null)
+                                {
+                                    <img src="~/images/user_no_avatar.jpg" width="100" class="img-thumbnail" />
+
+                                }
+                                else
+                                {
+                                    <img src="~/images/user/@Model.avatar" width="100" class="img-thumbnail" />
+                                }
+
+                            }
                             <br />
                             @Html.DisplayFor(model => model.avatar)
                         </div>

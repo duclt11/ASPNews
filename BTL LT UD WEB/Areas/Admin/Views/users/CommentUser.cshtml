@@ -14,7 +14,23 @@
         <!-- /.card-header -->
         <div class="card-body table-responsive">
             <div class="row">
-                
+                <div class="col-lg-1 col-md-1 col-1">
+                    <span class="btn btn-success col-12" style="height:38px;color:white;leight-height:45px">@Html.ActionLink("Thêm", "Create")</span>
+                </div>
+                <div class="col-lg-11 col-md-11 col-11">
+                    <form action="" id="form-search">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="searchstr" id="searchstr" placeholder="Tìm kiếm bài viết...">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default" value="Search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <table class="table">
                 <tr>

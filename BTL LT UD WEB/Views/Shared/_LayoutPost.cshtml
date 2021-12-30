@@ -20,10 +20,10 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    @*<link rel="stylesheet" type="text/css" href="~/Content/css/dangnhapdangky.css">*@
+    <link rel="stylesheet" type="text/css" href="~/Content/css/dangnhapdangky.css">
     <script src="~/Content/js/main.js" language="javascript"></script>
 </head>
-<body>
+<body onload= "setFirstTime(document.frmSearch)">
     <div class="header fixed-top" style="background: #464a51;">
         <div class="container-md">
             <div class="top">
@@ -31,9 +31,21 @@
                 <div class="row">
                     <!-- 	<div class="col-md-4"><i class="fas fa-laugh"></i> Welcome!</div> -->
                     <div class="col-md-8"><i class="fas fa-phone"></i>0123456789</div>
-                    <!-- <div class="col-md-2"><i class="fas fa-info"></i> Help</div> -->
-                    <div class="col-md-2" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="fas fa-info"></i><a>&ensp; Đăng nhập</a></div>
-                    <div class="col-md-2" onclick="document.getElementById('id02').style.display='block'" style="width:auto;"><i class="fas fa-info"></i><a>&ensp;Đăng ký</a></div>
+                   
+                    @{
+                             
+                                    if (Session["userid"] == null)
+                                    {
+                            <div class="col-md-2" style="width:auto;"><i class="fas fa-info"></i><a href="/Home/Login"  style= "color: white; text-decoration:none">&ensp; Đăng nhập</a></div>
+                            <div class="col-md-2" style="width:auto;"><i class="fas fa-info"></i><a href="/Home/Register"  style= "color: white; text-decoration:none">&ensp;Đăng ký</a></div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2"><i class="fas fa-info"></i>&ensp; Xin chào <a href=@Url.Action("userInfo","Home", new { id=Session["userid"] }) style="color: white; text-decoration:none">@Session["UserName"]</a></div>
+                            <div class="col-md-2"><i class="fa fa-sign-out"></i>@Html.ActionLink("Đăng xuất", "Logout", "Home", htmlAttributes: new { @style= "color: white; text-decoration:none" })</div>
+                        }
+                    }
+
                 </div>
 
             </div>
@@ -61,95 +73,17 @@
                 </nav>
             </div>
         </div>
-        <!-- END HEADER -->
+        
 
     </div>
 
 
-    <div id="id01" class="modal" style="margin-top: 12px;">
-
-        <form class="modal-content animate" action="/action_page.php" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
-            </div>
-            <!-- #region Dang nhap -->
-            <div class="container" id="modal-container">
-                <label for="uname" style="margin-top: -20px;"><b>Tên đăng nhập</b></label>
-                <input type="text" placeholder="Nhập tên đăng nhập" name="uname" required>
-
-                <label for="psw" style="margin-top: 0px;"><b>Mật khẩu</b></label>
-                <input type="password" placeholder="Nhập mật khẩu" name="psw" required>
-
-                <button type="submit">Đăng nhập</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Ghi nhớ đăng nhập
-                </label>
-                <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Hủy</button>
-                    <span class="psw"> <a href="#" style="text-decoration: none;">Quên mật khẩu?</a></span>
-                </div>
-            </div>
-            <script>
-                // Get the modal
-                var modal = document.getElementById('id01');
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            </script>
-            <!-- #endregion -->
-
-
-        </form>
-    </div>
-    <!-- #region Dang ky -->
-    <div id="id02" class="modal" style="margin-top: 18px;">
-
-        <form class="modal-content animate" action="/action_page.php" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
-            </div>
-
-            <div class="container" id="modal-container">
-                <label for="uname" style="margin-top: -20px;"><b>Nhập email</b></label>
-                <input type="text" placeholder="Nhập email" name="uname" required>
-
-                <label for="psw" style="margin-top: 0px;"><b>Tạo mật khẩu</b></label>
-                <input type="password" placeholder="Nhập mật khẩu" name="psw" required>
-                <label for="psw" style="margin-top: 0px;"><b>Mật lại khẩu</b></label>
-                <input type="password" placeholder="Nhập lại mật khẩu" name="psw" required>
-
-                <button type="submit">Đăng ký</button>
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Hủy</button>
-            </div>
-
-            <!--   <div class="container" style="background-color:#f1f1f1">
-
-                <span class="psw"> <a href="#" style="text-decoration: none;">Quên mật khẩu?</a></span>
-              </div> -->
-        </form>
-    </div>
-    <script>
-        // Get the modal
-        var modal = document.getElementById('id02');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-    <!-- #endregion -->
+   
+  
 
     @RenderBody()
     <!-- #region Footer -->
-    <div class="ask pt-5 pb-5">
+    <div class="ask pt-5 pb-5 bg-white">
 
         <div class="ask">
             <div class="row mb-5">
