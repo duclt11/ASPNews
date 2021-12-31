@@ -3,5 +3,240 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<div style="padding-left:20px; padding-right:20px;">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@ViewBag.Posts</h3>
+                    <p>Số bài viết</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <a href="/Admin/posts" class="small-box-footer">
+                    Chi tiết
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>@ViewBag.Poster</h3>
+                    <p>Người đăng bài</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <a href="/Admin/posters" class="small-box-footer">
+                    Chi tiết
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>@ViewBag.User</h3>
+                    <p>Khách hàng</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <a href="/Admin/users" class="small-box-footer">
+                    Chi tiết
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>@ViewBag.Category</h3>
+                    <p>Danh mục</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <a href="/Admin/categories" class="small-box-footer">
+                    Chi tiết
+                    <i class="fas fa-arrow-circle-right">
+                    </i>
+                </a>
+            </div>
+        </div>
+    </div>
 
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-chart-line"></i> Biểu đồ bài viết</h3>
+            <div class="card-tools">
+                <button type="button"
+                        class="btn btn-tool"
+                        data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button"
+                        class="btn btn-tool"
+                        data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="chart">
+                <canvas id="chart"
+                        style="
+                    min-height: 250px;
+                    height: 250px;
+                    max-height: 250px;
+                    max-width: 100%;
+                  ">
+                </canvas>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <!--<div class="card-footer">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <button data-chart-filter="day" class="nav-link active btn">Theo ngày</button>
+                        </li>-->
+                        @*<li class="nav-item">
+                            <button data-chart-filter="month" class="nav-link btn">Theo tháng</button>
+                        </li>
+                        <li class="nav-item">
+                            <button data-chart-filter="year" class="nav-link btn">Theo năm</button>
+                        </li>*@
+                    <!--</ul>
+                </div>
+                @{ var today = DateTime.Now; }
+                <div class="col-xs-12 col-md-6 text-right mt-2 mt-md-0">
+                    <div class="d-inline-block mr-2" id="month">
+                        <label class="mr-2">Tháng</label>
+                        @Html.DropDownList("month", Enumerable.Range(1, 12).Select(m => new SelectListItem()
+                        {
+                            Value = m.ToString(),
+                            Text
+                                = m.ToString(),
+                            Selected = today.Month == m
+                        }), new { @class = "custom-select w-auto", id = "monthInput" })
+                    </div>
+                    <div class="d-inline-block mr-2" id="year">
+                        <label class="mr-2">Năm</label>
+                        @Html.DropDownList("year", Enumerable.Range(2019, 6).Select(y => new SelectListItem()
+                        {
+                            Value = y.ToString(),
+                            Text
+                                = y.ToString(),
+                            Selected = today.Year == y
+                        }), new { @class = "custom-select w-auto", id = "yearInput" })
+                    </div>
+                    <button class="btn btn-primary" onclick="showChart()">Xem</button>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
 
+<!-- #region Script -->
+<script>
+    //let chartFilter = "day";
+    showChart();
+    async function showChart() {
+        const year = new Date().getFullYear();
+        const month = new Date().getMonth() + 1;
+        const params = new URLSearchParams();
+        params.append("month", month);
+        params.append("year", year);
+            
+        
+        const data = await (await fetch("/Admin/admins/Posts?" + params.toString())).json();
+        renderChart(Array.from({ length: data.dayCount }, (_, i) => i + 1), data.data);
+       
+    }
+    function renderChart(labels, data) {
+        console.log(data);
+        var chart = $("#chart").get(0).getContext("2d");
+        var chartData = {
+            labels,
+            datasets: [
+                {
+                    label: "Số lượng",
+                    backgroundColor: "rgba(60,141,188,0.9)",
+                    borderColor: "rgba(60,141,188,0.8)",
+                    pointRadius: false,
+                    pointColor: "#3b8bba",
+                    pointStrokeColor: "rgba(60,141,188,1)",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(60,141,188,1)",
+                    data
+                },
+            ],
+        };
+
+        var chartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false,
+            },
+            scales: {
+                xAxes: [
+                    {
+                        gridLines: {
+                            display: false,
+                        },
+                    },
+                ],
+                yAxes: [
+                    {
+                        gridLines: {
+                            display: false,
+                        },
+                    },
+                ],
+            },
+        };
+
+        new Chart(chart, {
+            type: "line",
+            data: chartData,
+            options: chartOptions,
+        });
+    }
+    //document.querySelectorAll("button[data-chart-filter]").forEach(e => {
+    //    e.addEventListener("click", evt => {
+    //        chartFilter = evt.target.dataset.chartFilter;
+    //        const yearElm = document.querySelector("#year");
+    //        const monthElm = document.querySelector("#month");
+    //        const hideElm = elm => {
+    //            elm.classList.remove("d-inline-block");
+    //            elm.classList.add("d-none");
+    //        }
+    //        const showElm = elm => {
+    //            elm.classList.remove("d-none");
+    //            elm.classList.add("d-inline-block");
+    //        }
+    //        if (chartFilter == "year") {
+    //            hideElm(yearElm);
+    //            hideElm(monthElm);
+    //        } else if (chartFilter == "month") {
+    //            showElm(yearElm);
+    //            hideElm(monthElm);
+    //        } else {
+    //            showElm(yearElm);
+    //            showElm(monthElm);
+    //        }
+    //        document.querySelectorAll("button[data-chart-filter]").forEach(btn => btn.classList.remove("active"));
+    //        evt.target.classList.add("active");
+    //    });
+    //})
+</script>
+<script src="~/Content/plugins/chart.js/Chart.min.js"></script>
+<!-- #endregion -->

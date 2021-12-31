@@ -23,15 +23,15 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         // GET: posts
         public ActionResult Index(string searchStr, int? page)
         {
-            var posts = db.posts.Include(p => p.category).Include(p => p.poster);
+            var posts = db.posts.Include(p => p.category).Include(p => p.poster).OrderByDescending(e=>e.created_at);
 
             if (!String.IsNullOrEmpty(searchStr))
             {
-                posts = posts.Where(e => e.poster.username.Contains(searchStr));
+                posts = posts.Where(e => e.poster.username.Contains(searchStr)).OrderByDescending(e => e.created_at);
             }
             //Sắp xếp trước khi phân trang
             posts = posts.OrderBy(e => e.post_id);
-            int pageSize = 10;
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(posts.ToPagedList(pageNumber, pageSize));
         }
@@ -114,17 +114,17 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "post_id,title,description,created_at,category_id,poster_id,content")] post posts)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "post_id,title,description,created_at,category_id,poster_id")] post posts)
         {
 
             try
             {
-
+                posts.content = Request["content"];
                 // posts.content = Request.Form["content"];
-                    db.Entry(posts).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                db.Entry(posts).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
 
                 //posts.content = Request.Form["content"];
                 // return View(posts);

@@ -21,7 +21,11 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         [Authenticate]
         public ActionResult Index()
         {
+            ViewBag.Posts = db.posts.Count();
+            ViewBag.Poster = db.posters.Count();
+			ViewBag.Category = db.categories.Count();
 
+			ViewBag.User = db.users.Count();
             return View();
         }
 
@@ -48,8 +52,53 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
             Session["adminId"] = null;
             return Redirect("/");
         }
-        
-    }
+		public ActionResult Posts(int? year, int? month)
+		{
+			
+			//if (year.HasValue && month.HasValue)
+			//{
+				var dayCount = DateTime.DaysInMonth(year.Value, month.Value);
+				var saleData = (from o in db.posts.AsEnumerable()
+								where o.created_at.Year == year && o.created_at.Month == month
+								group o by o.created_at.Day
+								into day
+								select new { day = day.Key, postCount = day.Count() })
+					.ToList();
+				var dailySaleData = Enumerable.Repeat(0, dayCount).ToArray();
+				saleData.ForEach(sd => dailySaleData[sd.day - 1] = sd.postCount);
+				return Json(new { dayCount, data = dailySaleData }, JsonRequestBehavior.AllowGet);
+			//}
+			//if (year.HasValue)
+			//{
+			//	var saleData = (from o in db.posts.AsEnumerable()
+			//					where o.created_at.Year == year
+			//					group o by o.created_at.Month
+			//		into m
+			//					select new { month = m.Key, sale = m.Sum(SumFn) }).ToList();
+			//	var monthlySaleData = Enumerable.Repeat(0, 12).ToArray();
+			//	saleData.ForEach(sd => monthlySaleData[sd.month - 1] = sd.sale);
+			//	return Json(new { data = monthlySaleData }, JsonRequestBehavior.AllowGet);
+			//}
+			//else
+			//{
+			//	var saleData = (from o in db.posts.AsEnumerable()
+			//					group o by o.created_at.Year
+			//		into y
+			//					select new
+			//					{
+			//						year = y.Key,
+			//						sale = y.Sum(SumFn)
+			//					}).ToList();
+			//	var minY = saleData.Min(d => d.year);
+			//	var maxY = saleData.Max(d => d.year);
+			//	var yearCount = maxY - minY + 1;
+			//	var yearlySaleData = Enumerable.Repeat(0, yearCount).ToArray();
+			//	saleData.ForEach(sd => yearlySaleData[sd.year - minY] = sd.sale);
+			//	return Json(new { years = Enumerable.Range(minY, yearCount).ToArray(), data = yearlySaleData }, JsonRequestBehavior.AllowGet);
+			//}
+		}
+
+	}
 
     
 }
