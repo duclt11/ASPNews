@@ -197,5 +197,6 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
             var cmt = db.comments.Where(u => u.post_id == id).ToList();
             return View(cmt);
         }
+        
     }
 }

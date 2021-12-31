@@ -3359,6 +3359,7 @@
     <Content Include="Views\user\ForgotPassword.cshtml" />
     <Content Include="Views\user\ResetPassword.cshtml" />
     <Content Include="Views\posts\CreateComment.cshtml" />
+    <Content Include="Views\posts\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

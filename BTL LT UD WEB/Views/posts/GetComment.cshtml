@@ -68,15 +68,17 @@
 
                 @if (Session["userid"] != null)
                 {
-                    using (Html.BeginForm("CreateComment", "posts"))
-                    {
+                    
+                        { 
+                            var src1 = Session["avatar"];
+                        }
                         <div class="p-2">
-                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="@Session["avatar"]" width="40"><textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea></div>
+                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="src1" width="40"/><textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea></div>
                             <div class="mt-1 text-right"><input type="submit" class="btn btn-primary btn-sm shadow-none" value="Post comment" /><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
                         </div>
                         <input type="hidden" value="@Session["userid"]" name="user_id" />
                         <input type="hidden" value="@ViewBag.post_id" name="id" />
-                    }
+                    
                 }
                 else
                 {

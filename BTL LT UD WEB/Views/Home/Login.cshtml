@@ -3,7 +3,7 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutPost.cshtml";
 }
-<style>
+@*<style>
     .model{
         width:50vw;
         height:50vw;
@@ -16,14 +16,14 @@
         border-radius:30px !important;
     }
    
-</style>
+</style>*@
 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 <div id="id01" class="modal" style=" display: block;">
     <div class="modal-content animate">
         <div class="imgcontainer">
             <div>
-                <a class="close" title="Close Modal" href="/Home/Index">x</a>
+                <a class="close" title="Close Modal" href="/">x</a>
             </div>
             <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
         </div>

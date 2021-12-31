@@ -130,7 +130,10 @@ namespace BTL_LT_UD_WEB.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Contact()
+        {
+            return View();
+        }
 
-        
     }
 }
