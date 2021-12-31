@@ -108,7 +108,7 @@ namespace BTL_LT_UD_WEB.Controllers
         [HttpPost]
         public ActionResult CreateComment(int? user_id, int? id, string content)
         {
-
+            ViewBag.avatar = db.users.Find(user_id).avatar;
             comment cmt = new comment
             {
                 user_id = user_id,
@@ -134,6 +134,10 @@ namespace BTL_LT_UD_WEB.Controllers
         {
             return View();
         }
-
+        public ActionResult Slider()
+        {
+            var res = db.posts.Take(4);
+            return PartialView(res);
+        }
     }
 }

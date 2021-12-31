@@ -3,30 +3,18 @@
     ViewBag.Title = "PostComment";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@*@model PagedList.IPagedList<BTL_LT_UD_WEB.Models.comment>
-@using PagedList.Mvc*@
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-<section class="content">
+<section class="content" id="update">
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body table-responsive">
             <h2>Comment trong bài viết</h2>
             <div class="row">
-                @*<div class="col-lg-1 col-md-1 col-1">
-                    <span class="btn btn-success col-12" style="height:38px;color:white;leight-height:45px">@Html.ActionLink("Thêm", "Create")</span>
-                </div>*@
+
                 <div class="col-lg-11 col-md-11 col-11">
                     <form action="" id="form-search">
-                        @*<div class="form-group">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="searchstr" id="searchstr" placeholder="Tìm kiếm bài viết...">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default" value="Search">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>*@
                     </form>
                 </div>
             </div>
@@ -52,7 +40,7 @@
 
                         <td>
                             <a href="/Admin/users/Details/@item.user_id">@item.user.username</a>
-                            
+
                         </td>
                         <td>
                             @item.content
@@ -60,23 +48,28 @@
                         <td>
                             @item.datecomment
                         </td>
-
+                        
+                   
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.post_id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.post_id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.post_id }) |
-                            @Html.ActionLink("Comment", "PostComment", new { id = item.post_id })
+                            @*@Ajax.ActionLink("DeleteComment", new { id = item.comment_id }, new AjaxOptions()
+        {
+
+            HttpMethod = "POST",
+            UpdateTargetId = "update",
+            InsertionMode = InsertionMode.Replace
+        })*@
+                            
+                            <a href="@Url.Action("DeleteComment",new { id = item.comment_id } )"><i class="fas fa-trash"></i> </a>
                         </td>
                     </tr>
                 }
 
             </table>
-            @*<div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
-            <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</div>*@
+            <a href="@Url.Action("Details",new { id = TempData["post_id"] } )">Trở về bài viết </a>
             <hr>
         </div>
-        <!-- /.card-body -->
+
     </div>
-    <!-- /.card -->
+
 </section>
 

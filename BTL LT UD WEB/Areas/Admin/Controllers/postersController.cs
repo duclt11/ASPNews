@@ -179,5 +179,12 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        public ActionResult Posted(int id)
+        {
+            var posted = db.posts.Where(e => e.poster_id == id).ToList();
+            ViewBag.Name = db.posters.Find(id).username;
+            return View(posted);
+        }
     }
 }

@@ -62,9 +62,10 @@
                                 @Html.DisplayFor(modelItem => item.created_at)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.category_id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.category_id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.category_id })
+                                <a href="@Url.Action("Edit",new { id = item.category_id } )"><i class="fas fa-pen"></i> </a><br />
+                                <a href="@Url.Action("Details",new { id = item.category_id } )"><i class="fas fa-eye"></i> </a><br />
+                                <a href="@Url.Action("Delete",new { id = item.category_id } )"><i class="fas fa-trash-alt"></i> </a><br />
+                                
                             </td>
                         </tr>
                     }

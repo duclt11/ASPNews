@@ -92,9 +92,10 @@
                                 @Html.DisplayFor(modelItem => item.created_at)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.poster_id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.poster_id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.poster_id })
+                                <a href="@Url.Action("Edit",new { id = item.poster_id } )"><i class="fas fa-pen"></i> </a><br />
+                                <a href="@Url.Action("Details",new { id = item.poster_id } )"><i class="fas fa-eye"></i> </a><br />
+                                <a href="@Url.Action("Delete",new { id = item.poster_id } )"><i class="fas fa-trash-alt"></i> </a><br />
+                                <a href="@Url.Action("Posted",new { id = item.poster_id } )"><i class="fas fa-edit"></i> </a><br />
                             </td>
                         </tr>
                     }

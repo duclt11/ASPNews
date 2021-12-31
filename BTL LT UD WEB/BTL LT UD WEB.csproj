@@ -4993,6 +4993,7 @@
     <Content Include="Areas\Admin\Views\users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\posters\Posted.cshtml" />
     <None Include="bin\BTL LT UD WEB.dll.config" />
     <Content Include="bin\roslyn\csc.exe.config" />
     <Content Include="bin\roslyn\csc.rsp" />
@@ -5023,6 +5024,9 @@
     <Content Include="images\download.png" />
     <Content Include="images\img\ads-1.jpg" />
     <Content Include="images\img\ads-2.jpg" />
+    <Content Include="images\aodai3.jpg" />
+    <Content Include="images\aodai6.jpg" />
+    <Content Include="images\fl.jpg" />
     <Content Include="images\img\logo.png" />
     <Content Include="images\img\news-350x223-1.jpg" />
     <Content Include="images\img\news-350x223-2.jpg" />
@@ -5261,6 +5265,7 @@
     <Content Include="Views\user\ResetPassword.cshtml" />
     <Content Include="Views\posts\CreateComment.cshtml" />
     <Content Include="Views\posts\Contact.cshtml" />
+    <Content Include="Views\posts\Slider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

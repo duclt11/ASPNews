@@ -16,7 +16,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-center row">
 
-            <div class="d-flex flex-column comment-section bg-light border border-primary rounded" style="width:730px" id="getcomment">
+            <div class="d-flex flex-column comment-section bg-light border border-primary rounded" style="width:730px; padding:15px;" id="getcomment">
                 <div class="font-weight-bold p-2"><h2>Bình luận (@Model.LongCount())</h2></div>
                 <div id="getcomment">
                     @if (Model.LongCount() == 0)
@@ -54,37 +54,47 @@
                             </div>
                             <div class="bg-white">
                                 <div class="d-flex flex-row fs-12">
-                                    <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
-                                    <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
-                                    <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                    <div class="like p-2 cursor"><i class="fas fa-thumbs-up"></i><span class="ml-1">Like</span></div>
+                                    <div class="like p-2 cursor"><i class="fas fa-comments"></i><span class="ml-1">Comment</span></div>
+                                    <div class="like p-2 cursor"><i class="fas fa-share"></i><span class="ml-1">Share</span></div>
                                 </div>
                             </div>
                         }
-                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Details/"+ViewBag.post_id, new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
+                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Details/" + ViewBag.post_id, new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
                     }
                 </div>
 
 
+                <div style="padding:10px">
+                    @if (Session["userid"] != null)
+                    {
 
-                @if (Session["userid"] != null)
-                {
-                    
-                        { 
+                        {
                             var src1 = Session["avatar"];
+                            if (src1 != null)
+                            {
+                                <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="src1" width="40" /><textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea></div>
+                            }
+                            else
+                            {
+                                <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="~/images/user_no_avatar.jpg" width="40" /><textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea></div>
+                            }
                         }
                         <div class="p-2">
-                            <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="src1" width="40"/><textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea></div>
+
                             <div class="mt-1 text-right"><input type="submit" class="btn btn-primary btn-sm shadow-none" value="Post comment" /><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
                         </div>
                         <input type="hidden" value="@Session["userid"]" name="user_id" />
                         <input type="hidden" value="@ViewBag.post_id" name="id" />
-                    
-                }
-                else
-                {
-                    <div class="text-center p-2">Bạn cần <a href="/Home/Login" style="color:blue; "> đăng nhập </a> để bình luận</div>
-                    <hr />
-                }
+
+                    }
+                    else
+                    {
+                        <div class="text-center p-2">Bạn cần <a href="/Home/Login" style="color:blue; "> đăng nhập </a> để bình luận</div>
+                        <hr />
+                    }
+                </div>
+                
             </div>
 
         </div>

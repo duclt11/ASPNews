@@ -74,18 +74,7 @@
                             @{
                                 string ImagePath = "~/images/user/" + Model.avatar;
                             }
-                            @{
-                                if (Model.avatar == null)
-                                {
-                                    <img src="~/images/user_no_avatar.jpg" width="100" class="img-thumbnail" />
-
-                                }
-                                else
-                                {
-                                    <img src="~/images/user/@Model.avatar" width="100" class="img-thumbnail" />
-                                }
-
-                            }
+                            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
                             <br />
                             @Html.DisplayFor(model => model.avatar)
                         </div>

@@ -23,14 +23,14 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
         // GET: posts
         public ActionResult Index(string searchStr, int? page)
         {
-            var posts = db.posts.Include(p => p.category).Include(p => p.poster).OrderByDescending(e=>e.created_at);
+            var posts = db.posts.Include(p => p.category).Include(p => p.poster);
 
             if (!String.IsNullOrEmpty(searchStr))
             {
-                posts = posts.Where(e => e.poster.username.Contains(searchStr)).OrderByDescending(e => e.created_at);
+                posts = posts.Where(e => e.poster.username.Contains(searchStr));
             }
             //Sắp xếp trước khi phân trang
-            posts = posts.OrderBy(e => e.post_id);
+            posts = posts.OrderByDescending(e => e.post_id);
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(posts.ToPagedList(pageNumber, pageSize));
@@ -192,10 +192,20 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult PostComment(int? id)
+        public ActionResult PostComment(int id)
         {
-            var cmt = db.comments.Where(u => u.post_id == id).ToList();
-            return View(cmt);
+            var res = db.comments.Where(e => e.post_id == id).ToList();
+            TempData["post_id"] = id;
+            return View(res);
+           
+        }
+        public ActionResult DeleteComment(int id)
+        {
+            var del = db.comments.Find(id);
+
+            db.Entry(del).State = EntityState.Deleted;
+            db.SaveChanges();
+            return RedirectToAction("PostComment", new { id = TempData["post_id"] });
         }
         
     }

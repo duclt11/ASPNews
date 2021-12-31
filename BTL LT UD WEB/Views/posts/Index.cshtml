@@ -17,7 +17,9 @@
 <link href="~/Content/css/bootstrap-grid.css" rel="stylesheet" />
 <link href="~/Content/css/main.css" rel="stylesheet" />
 <link href="~/Content/PagedList.css" rel="stylesheet" />
+
 @{
+    Html.RenderAction("Slider", "posts");
     Html.RenderAction("Newest", "posts");
 }
 <div class="sections mt-5 pt-5 pb-5 bg-light">
@@ -52,14 +54,14 @@
                             {
                                 <li class="media" style="margin-bottom:20px;">
                                     <div class="mycrop2 mr-4">
-                                        @{ 
-                                            
+                                        @{
+
                                             var htmlBody = postsController.GetSrcImage(item.content);
 
                                         }
                                         <a href="/posts/details/?id=@item.post_id">
-                                           
-                                            <img src="@htmlBody" alt="Loi"/>
+
+                                            <img src="@htmlBody" alt="Loi" />
                                         </a>
                                     </div>
                                     <div class="media-body text-justify">
@@ -78,24 +80,24 @@
                         <!-- #region Phan trang -->
 
 
-                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page}), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
+                        <div style="text-align:center">@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })</div>
 
                     </div>
 
                     <div class="col-md-4">
                         @{
-                                var hot = ViewBag.Hot as IEnumerable<BTL_LT_UD_WEB.Models.post>;
+                            var hot = ViewBag.Hot as IEnumerable<BTL_LT_UD_WEB.Models.post>;
                             foreach (var item in hot)
                             {
                                 var src = BTL_LT_UD_WEB.Controllers.postsController.GetSrcImage(item.content);
                                 <div class="card bg-dark text-white mt-5">
                                     <img src="@src" class="card-img" alt="loi">
                                     <div class="card-img-overlay mybg1">
-                                       
-                                            <h5 class="card-title"><a href="/posts/Details/?id=@item.post_id" style="color:white; text-decoration:none;">@item.title</a></h5>
-                                            <p class="card-text">@item.description</p>
-                                        
-                                        
+
+                                        <h5 class="card-title"><a href="/posts/Details/?id=@item.post_id" style="color:white; text-decoration:none;">@item.title</a></h5>
+                                        <p class="card-text">@item.description</p>
+
+
                                         <p class="card-text">Update on @item.created_at.ToString("dd/MM/yyyy")</p>
                                     </div>
                                 </div>

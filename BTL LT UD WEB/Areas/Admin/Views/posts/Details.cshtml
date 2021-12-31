@@ -16,7 +16,7 @@
                 <dl class="dl-horizontal">
                     <div class="form-group row col-12">
                         <div class="col-md-4 font-weight-bold">
-                            @Html.DisplayNameFor(model => model.category.category_name) :
+                            Danh mục:
                         </div>
                         <div class="col-md-8 ">
                             @Html.DisplayFor(model => model.category.category_name)
@@ -78,8 +78,10 @@
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.post_id }) |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Back to List", "Index") |
+                <a href="@Url.Action("Edit",new { id = Model.post_id } )"><i class="fas fa-pen"></i> </a> | 
+
+                <a href="@Url.Action("PostComment",new { id = Model.post_id } )"><i class="fas fa-comment"></i> </a>
             </p>
             <hr>
         </div>
