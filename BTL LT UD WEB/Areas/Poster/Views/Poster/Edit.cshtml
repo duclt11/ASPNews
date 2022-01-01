@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Poster/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@model BTL_LT_UD_WEB.Models.post
+
+<link href="~/Content/summernote-0.8.18-dist/summernote.min.css" rel="stylesheet" />
+<script src="~/Content/summernote-0.8.18-dist/summernote.min.js"></script>
+<script src="~/Content/ckeditor5/ckeditor.js"></script>
+<section class="content">
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+            @{
+                ViewBag.Title = "Edit";
+                var ImagePath = "~/images/anhao/" + Model.avatar;
+            }
+            @using (Html.BeginForm("edit", "poster", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Edit Post</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.post_id)
+                    @Html.HiddenFor(model => model.content)
+                    <input type="hidden" value="@Model.created_at" name="created_at" />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.content, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @*@Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })*@
+                            @*<input type="hidden" value="@Model.content" name="content" />
+                                @Html.TextAreaFor(model => model.content, new { @id = "ckeContent", validateRequest = "false" })*@
+                            <textarea id="ckeContent" name="content">@Model.content</textarea>
+                            <script>
+                            $(document).ready(function () {
+                                $('#ckeContent').summernote()
+
+                            });
+                            </script>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2"><b>Mã danh mục</b></div>
+                       
+                        <div class="col-md-12">
+                            @Html.DropDownList("category_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                    @ViewBag.Error
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            <hr>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+
+
+

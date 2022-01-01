@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Poster/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@model BTL_LT_UD_WEB.Models.post
+<section class="content">
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+            <h3>Are you sure you want to delete this?</h3>
+            <div>
+                <h4>Delete Post</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <div class="form-group row col-12">
+                        <div class="col-md-4 font-weight-bold">
+                            Danh mục
+                        </div>
+                        @Html.HiddenFor(model => model.poster_id)
+                        <div class="col-md-8 ">
+                            @Html.DisplayFor(model => model.category.category_name)
+                        </div>
+                    </div>
+                    <div class="form-group row col-12">
+                        <div class="col-md-4 font-weight-bold">
+                            Người đăng
+                        </div>
+                        <div class="col-md-8">
+                            @Html.DisplayFor(model => model.poster.email)
+                        </div>
+                    </div>
+                    <div class="form-group row col-12">
+                        <div class="col-md-4 font-weight-bold">
+                            Tiêu đề
+                        </div>
+                        <div class="col-md-8 ">
+                            @Html.DisplayFor(model => model.title)
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-12">
+                        <div class="col-md-4 font-weight-bold">
+                            Mô tả
+                        </div>
+                        <div class="col-md-8 ">
+                            @Html.DisplayFor(model => model.description)
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-12">
+                        <div class="col-md-4 font-weight-bold">
+                            Nội dung
+                        </div>
+                        <div class="col-md-8 ">
+                            @Html.Raw(Model.content)
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group row col-12">
+                        <div class="col-md-4 font-weight-bold">
+                            Ngày đăng
+                        </div>
+                        <div class="col-md-8 ">
+                            @Html.DisplayFor(model => model.created_at)
+                        </div>
+                    </div>
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+            <hr>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+
+

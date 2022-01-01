@@ -1,0 +1,85 @@
+﻿@model BTL_LT_UD_WEB.Models.Login
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+    <!--icon -->
+    <link rel="stylesheet" href="~/Content/plugins/flag-icon-css/css/flag-icon.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css">
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/dist/css/adminlte.css" rel="stylesheet" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+</head>
+
+<body class="hold-transition login-page">
+    @using (Html.BeginForm())
+    {
+        <div class="login-box" style="margin:13% auto">
+            <div class="register-logo">
+                <b>Poster</b>LTE
+            </div>
+            <div class="card">
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg">Sign in to start your session</p>
+
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" name="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="input-group-mb3">
+                        <div class="text-danger" style="margin-bottom: 10px;">@ViewBag.Error</div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-sm">Đăng nhập</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+
+
+                </div>
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+    }
+
+    <!-- /.login-box -->
+</body>
+
+</html>

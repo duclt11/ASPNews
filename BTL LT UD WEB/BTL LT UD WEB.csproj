@@ -146,6 +146,9 @@
     <Compile Include="Areas\Admin\Controllers\postersController.cs" />
     <Compile Include="Areas\Admin\Controllers\postsController.cs" />
     <Compile Include="Areas\Admin\Controllers\usersController.cs" />
+    <Compile Include="Areas\Poster\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Poster\Controllers\PosterController.cs" />
+    <Compile Include="Areas\Poster\PosterAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\postsController.cs" />
     <Compile Include="Controllers\userController.cs" />
@@ -171,6 +174,7 @@
     <Compile Include="Models\user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Authenticate.cs" />
+    <Compile Include="Security\AuthenticatePoster.cs" />
     <Compile Include="Security\AuthenticateUser.cs" />
     <Compile Include="Security\Crypto.cs" />
   </ItemGroup>
@@ -4994,6 +4998,16 @@
     <Content Include="Areas\Admin\Views\users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\posters\Posted.cshtml" />
+    <Content Include="Areas\Poster\Views\web.config" />
+    <Content Include="Areas\Poster\Views\Poster\Index.cshtml" />
+    <Content Include="Areas\Poster\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Poster\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Poster\Views\Poster\Info.cshtml" />
+    <Content Include="Areas\Poster\Views\Poster\PostComment.cshtml" />
+    <Content Include="Areas\Poster\Views\Poster\Details.cshtml" />
+    <Content Include="Areas\Poster\Views\Poster\Create.cshtml" />
+    <Content Include="Areas\Poster\Views\Poster\Delete.cshtml" />
+    <Content Include="Areas\Poster\Views\Poster\Edit.cshtml" />
     <None Include="bin\BTL LT UD WEB.dll.config" />
     <Content Include="bin\roslyn\csc.exe.config" />
     <Content Include="bin\roslyn\csc.rsp" />
@@ -5270,6 +5284,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Poster\Data\" />
     <Folder Include="images\poster\" />
     <Folder Include="images\post\" />
     <Folder Include="images\user\" />

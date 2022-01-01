@@ -120,7 +120,7 @@ namespace BTL_LT_UD_WEB.Areas.Admin.Controllers
 
             try
             {
-                posts.content = Request["content"];
+                
                 // posts.content = Request.Form["content"];
                 db.Entry(posts).State = EntityState.Modified;
                 db.SaveChanges();

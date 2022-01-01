@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<BTL_LT_UD_WEB.Models.comment>
 @{
     ViewBag.Title = "PostComment";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Areas/Poster/Views/Shared/_LayoutAdmin.cshtml";
 }
-<script src="~/Scripts/jquery-3.4.1.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
 <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 <section class="content" id="update">
     <div class="card">
@@ -39,7 +38,7 @@
                     <tr>
 
                         <td>
-                            <a href="/Admin/users/Details/@item.user_id">@item.user.username</a>
+                            @item.user.username
 
                         </td>
                         <td>
@@ -51,32 +50,26 @@
 
 
                         <td>
-                            @*@Ajax.ActionLink("DeleteComment", new { id = item.comment_id }, new AjaxOptions()
-        {
 
-            HttpMethod = "POST",
-            UpdateTargetId = "update",
-            InsertionMode = InsertionMode.Replace
-        })*@
 
                             <button class="btn btn-danger" onclick="confirmDelete()">
                                 <i class="fas fa-trash"></i> Xóa
                             </button>
                             <script>
-    function confirmDelete() {
-			Swal.fire({
-				title: 'Bạn có muốn xóa comment này?',
-				text: "Tất cả các dữ liệu liên quan sẽ bị xóa!",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonText: 'Có',
-				cancelButtonText: "Không"
-			}).then((result) => {
-				if (result.isConfirmed) {
-                    location.href = "/Poster/Poster/DeleteComment/@item.comment_id";
-				}
-			});
-		}
+                                function confirmDelete() {
+			                            Swal.fire({
+				                            title: 'Bạn có muốn xóa comment này?',
+				                            text: "Tất cả các dữ liệu liên quan sẽ bị xóa!",
+				                            icon: 'warning',
+				                            showCancelButton: true,
+				                            confirmButtonText: 'Có',
+				                            cancelButtonText: "Không"
+			                            }).then((result) => {
+				                            if (result.isConfirmed) {
+                                                location.href = "/Poster/Poster/DeleteComment/@item.comment_id";
+				                            }
+			                            });
+		                            }
                             </script>
                         </td>
                     </tr>
@@ -84,12 +77,10 @@
 
             </table>
             <a href="@Url.Action("Details",new { id = TempData["post_id"] } )">Trở về bài viết </a>
-            
             <hr>
         </div>
 
     </div>
 
 </section>
-
 

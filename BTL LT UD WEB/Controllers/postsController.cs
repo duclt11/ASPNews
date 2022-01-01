@@ -98,6 +98,7 @@ namespace BTL_LT_UD_WEB.Controllers
         {
             var allCmt = db.comments.Where(d => d.post_id == id).OrderByDescending(e=>e.datecomment).ToList();
             ViewBag.post_id = id;
+            
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return PartialView("GetComment", allCmt.ToPagedList(pageNumber, pageSize));
